@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "camptown"
+version = "0.1.0"
+description = "Semantic-HTML player engine"
+authors = ["fluffy <fluffy@beesbuzz.biz>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+Jinja2 = "^3.1.2"
+mistune = "^3.0.2"
+markupsafe = "^2.1.3"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.6.1"
+pylint = "^3.0.2"
+autopep8 = "^2.0.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

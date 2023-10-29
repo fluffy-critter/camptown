@@ -1,0 +1,556 @@
+{
+    "title": "Test album",
+    "artist": "The Crapshoots",
+    "artwork": {
+        "width": 102,
+        "height": 150,
+        "1x": "album_cover.150.jpg",
+        "2x": "album_cover.300.jpg"
+    },
+    "tracks": [
+        {
+            "title": "My Pinky",
+            "filename": "test.mp3",
+            "duration": 60,
+            "artwork": {
+                "1x": "single_track.150.jpg",
+                "2x": "single_track.300.jpg"
+            },
+            "explicit": true
+        },
+        {
+            "title": "no preview",
+            "duration": 273
+        },
+        {
+            "title": "My Other Pinky",
+            "filename": "test.mp3",
+            "duration": 210,
+            "lyrics": [
+                "A line",
+                "a line",
+                "",
+                "align"
+            ],
+            "about": [
+                "A paragraph.",
+                "",
+                "Another paragraph.",
+                "",
+                "So many paragraphs."
+            ]
+        },
+        {
+            "title": "My Pinky",
+            "filename": "test.mp3",
+            "duration": 60,
+            "artwork": {
+                "1x": "single_track.150.jpg",
+                "2x": "single_track.300.jpg"
+            },
+            "explicit": true
+        },
+        {
+            "title": "no preview",
+            "duration": 273
+        },
+        {
+            "title": "My Other Pinky",
+            "filename": "test.mp3",
+            "duration": 210,
+            "lyrics": [
+                "A line",
+                "a line",
+                "",
+                "align"
+            ],
+            "about": [
+                "A paragraph.",
+                "",
+                "Another paragraph.",
+                "",
+                "So many paragraphs."
+            ]
+        },
+        {
+            "title": "My Pinky",
+            "filename": "test.mp3",
+            "duration": 60,
+            "artwork": {
+                "1x": "single_track.150.jpg",
+                "2x": "single_track.300.jpg"
+            },
+            "explicit": true
+        },
+        {
+            "title": "no preview",
+            "duration": 273
+        },
+        {
+            "title": "My Other Pinky",
+            "filename": "test.mp3",
+            "duration": 210,
+            "lyrics": [
+                "A line",
+                "a line",
+                "",
+                "align"
+            ],
+            "about": [
+                "A paragraph.",
+                "",
+                "Another paragraph.",
+                "",
+                "So many paragraphs."
+            ]
+        },
+        {
+            "title": "My Pinky",
+            "filename": "test.mp3",
+            "duration": 60,
+            "artwork": {
+                "1x": "single_track.150.jpg",
+                "2x": "single_track.300.jpg"
+            },
+            "explicit": true
+        },
+        {
+            "title": "no preview",
+            "duration": 273
+        },
+        {
+            "title": "My Other Pinky",
+            "filename": "test.mp3",
+            "duration": 210,
+            "lyrics": [
+                "A line",
+                "a line",
+                "",
+                "align"
+            ],
+            "about": [
+                "A paragraph.",
+                "",
+                "Another paragraph.",
+                "",
+                "So many paragraphs."
+            ]
+        },
+        {
+            "title": "My Pinky",
+            "filename": "test.mp3",
+            "duration": 60,
+            "artwork": {
+                "1x": "single_track.150.jpg",
+                "2x": "single_track.300.jpg"
+            },
+            "explicit": true
+        },
+        {
+            "title": "no preview",
+            "duration": 273
+        },
+        {
+            "title": "My Other Pinky",
+            "filename": "test.mp3",
+            "duration": 210,
+            "lyrics": [
+                "A line",
+                "a line",
+                "",
+                "align"
+            ],
+            "about": [
+                "A paragraph.",
+                "",
+                "Another paragraph.",
+                "",
+                "So many paragraphs."
+            ]
+        },
+        {
+            "title": "My Pinky",
+            "filename": "test.mp3",
+            "duration": 60,
+            "artwork": {
+                "1x": "single_track.150.jpg",
+                "2x": "single_track.300.jpg"
+            },
+            "explicit": true
+        },
+        {
+            "title": "no preview",
+            "duration": 273
+        },
+        {
+            "title": "My Other Pinky",
+            "filename": "test.mp3",
+            "duration": 210,
+            "lyrics": [
+                "A line",
+                "a line",
+                "",
+                "align"
+            ],
+            "about": [
+                "A paragraph.",
+                "",
+                "Another paragraph.",
+                "",
+                "So many paragraphs."
+            ]
+        },
+        {
+            "title": "My Pinky",
+            "filename": "test.mp3",
+            "duration": 60,
+            "artwork": {
+                "1x": "single_track.150.jpg",
+                "2x": "single_track.300.jpg"
+            },
+            "explicit": true
+        },
+        {
+            "title": "no preview",
+            "duration": 273
+        },
+        {
+            "title": "My Other Pinky",
+            "filename": "test.mp3",
+            "duration": 210,
+            "lyrics": [
+                "A line",
+                "a line",
+                "",
+                "align"
+            ],
+            "about": [
+                "A paragraph.",
+                "",
+                "Another paragraph.",
+                "",
+                "So many paragraphs."
+            ]
+        },
+        {
+            "title": "My Pinky",
+            "filename": "test.mp3",
+            "duration": 60,
+            "artwork": {
+                "1x": "single_track.150.jpg",
+                "2x": "single_track.300.jpg"
+            },
+            "explicit": true
+        },
+        {
+            "title": "no preview",
+            "duration": 273
+        },
+        {
+            "title": "My Other Pinky",
+            "filename": "test.mp3",
+            "duration": 210,
+            "lyrics": [
+                "A line",
+                "a line",
+                "",
+                "align"
+            ],
+            "about": [
+                "A paragraph.",
+                "",
+                "Another paragraph.",
+                "",
+                "So many paragraphs."
+            ]
+        },
+        {
+            "title": "My Pinky",
+            "filename": "test.mp3",
+            "duration": 60,
+            "artwork": {
+                "1x": "single_track.150.jpg",
+                "2x": "single_track.300.jpg"
+            },
+            "explicit": true
+        },
+        {
+            "title": "no preview",
+            "duration": 273
+        },
+        {
+            "title": "My Other Pinky",
+            "filename": "test.mp3",
+            "duration": 210,
+            "lyrics": [
+                "A line",
+                "a line",
+                "",
+                "align"
+            ],
+            "about": [
+                "A paragraph.",
+                "",
+                "Another paragraph.",
+                "",
+                "So many paragraphs."
+            ]
+        },
+        {
+            "title": "My Pinky",
+            "filename": "test.mp3",
+            "duration": 60,
+            "artwork": {
+                "1x": "single_track.150.jpg",
+                "2x": "single_track.300.jpg"
+            },
+            "explicit": true
+        },
+        {
+            "title": "no preview",
+            "duration": 273
+        },
+        {
+            "title": "My Other Pinky",
+            "filename": "test.mp3",
+            "duration": 210,
+            "lyrics": [
+                "A line",
+                "a line",
+                "",
+                "align"
+            ],
+            "about": [
+                "A paragraph.",
+                "",
+                "Another paragraph.",
+                "",
+                "So many paragraphs."
+            ]
+        },
+        {
+            "title": "My Pinky",
+            "filename": "test.mp3",
+            "duration": 60,
+            "artwork": {
+                "1x": "single_track.150.jpg",
+                "2x": "single_track.300.jpg"
+            },
+            "explicit": true
+        },
+        {
+            "title": "no preview",
+            "duration": 273
+        },
+        {
+            "title": "My Other Pinky",
+            "filename": "test.mp3",
+            "duration": 210,
+            "lyrics": [
+                "A line",
+                "a line",
+                "",
+                "align"
+            ],
+            "about": [
+                "A paragraph.",
+                "",
+                "Another paragraph.",
+                "",
+                "So many paragraphs."
+            ]
+        },
+        {
+            "title": "My Pinky",
+            "filename": "test.mp3",
+            "duration": 60,
+            "artwork": {
+                "1x": "single_track.150.jpg",
+                "2x": "single_track.300.jpg"
+            },
+            "explicit": true
+        },
+        {
+            "title": "no preview",
+            "duration": 273
+        },
+        {
+            "title": "My Other Pinky",
+            "filename": "test.mp3",
+            "duration": 210,
+            "lyrics": [
+                "A line",
+                "a line",
+                "",
+                "align"
+            ],
+            "about": [
+                "A paragraph.",
+                "",
+                "Another paragraph.",
+                "",
+                "So many paragraphs."
+            ]
+        },
+        {
+            "title": "My Pinky",
+            "filename": "test.mp3",
+            "duration": 60,
+            "artwork": {
+                "1x": "single_track.150.jpg",
+                "2x": "single_track.300.jpg"
+            },
+            "explicit": true
+        },
+        {
+            "title": "no preview",
+            "duration": 273
+        },
+        {
+            "title": "My Other Pinky",
+            "filename": "test.mp3",
+            "duration": 210,
+            "lyrics": [
+                "A line",
+                "a line",
+                "",
+                "align"
+            ],
+            "about": [
+                "A paragraph.",
+                "",
+                "Another paragraph.",
+                "",
+                "So many paragraphs."
+            ]
+        },
+        {
+            "title": "My Pinky",
+            "filename": "test.mp3",
+            "duration": 60,
+            "artwork": {
+                "1x": "single_track.150.jpg",
+                "2x": "single_track.300.jpg"
+            },
+            "explicit": true
+        },
+        {
+            "title": "no preview",
+            "duration": 273
+        },
+        {
+            "title": "My Other Pinky",
+            "filename": "test.mp3",
+            "duration": 210,
+            "lyrics": [
+                "A line",
+                "a line",
+                "",
+                "align"
+            ],
+            "about": [
+                "A paragraph.",
+                "",
+                "Another paragraph.",
+                "",
+                "So many paragraphs."
+            ]
+        },
+        {
+            "title": "My Pinky",
+            "filename": "test.mp3",
+            "duration": 60,
+            "artwork": {
+                "1x": "single_track.150.jpg",
+                "2x": "single_track.300.jpg"
+            },
+            "explicit": true
+        },
+        {
+            "title": "no preview",
+            "duration": 273
+        },
+        {
+            "title": "My Other Pinky",
+            "filename": "test.mp3",
+            "duration": 210,
+            "lyrics": [
+                "A line",
+                "a line",
+                "",
+                "align"
+            ],
+            "about": [
+                "A paragraph.",
+                "",
+                "Another paragraph.",
+                "",
+                "So many paragraphs."
+            ]
+        },
+        {
+            "title": "My Pinky",
+            "filename": "test.mp3",
+            "duration": 60,
+            "artwork": {
+                "1x": "single_track.150.jpg",
+                "2x": "single_track.300.jpg"
+            },
+            "explicit": true
+        },
+        {
+            "title": "no preview",
+            "duration": 273
+        },
+        {
+            "title": "My Other Pinky",
+            "filename": "test.mp3",
+            "duration": 210,
+            "lyrics": [
+                "A line",
+                "a line",
+                "",
+                "align"
+            ],
+            "about": [
+                "A paragraph.",
+                "",
+                "Another paragraph.",
+                "",
+                "So many paragraphs."
+            ]
+        },
+        {
+            "title": "My Pinky",
+            "filename": "test.mp3",
+            "duration": 60,
+            "artwork": {
+                "1x": "single_track.150.jpg",
+                "2x": "single_track.300.jpg"
+            },
+            "explicit": true
+        },
+        {
+            "title": "no preview",
+            "duration": 273
+        },
+        {
+            "title": "My Other Pinky",
+            "filename": "test.mp3",
+            "duration": 210,
+            "lyrics": [
+                "A line",
+                "a line",
+                "",
+                "align"
+            ],
+            "about": [
+                "A paragraph.",
+                "",
+                "Another paragraph.",
+                "",
+                "So many paragraphs."
+            ]
+        }
+    ]
+}

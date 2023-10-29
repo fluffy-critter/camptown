@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{album.artist}}: {{album.title}}</title>
+        <link rel="stylesheet" href="player.css">
+        <script src="player.js">
+        </script>
+    </head>
+    <body>
+        <header>
+            <div class="title">
+                <h1><a href="{{album.album_url}}" target="_blank" rel="noopener">{{album.title}}</a></h1>
+                <h2>by <a href="{{album.artist_url}}" target="_blank" rel="noopener">{{album.artist}}</a></h2>
+            </div>
+            <div class="player">
+                <audio id="player" controls>
+                </audio>
+                <div id="nowplaying">now playing</div>
+            </div>
+            {{album.artwork|artwork_img(id="coverart")}}
+        </header>
+        <table id="tracklist">
+            {% for track in album.tracks %}
+            <tr class="track{% if track.explicit %} explicit{% endif %}">
+                <td class="player"></td>
+                <td class="idx">
+                    {{loop.index}}
+                </td>
+                <td class="title">
+                    {% if track.filename %}<a class="name" href="{{track.filename}}">{% else %}<span class="name">{% endif %}
+
+                    {% if track.artist %}
+                    {{ track.artist }}:
+                    {% endif %}
+                    {% if track.title %}
+                    {{ track.title }}
+                    {% else %}
+                    (Track {{loop.index}})
+                    {% endif %}
+
+                    {% if track.filename %}</a>{% else %}</span>{% endif %}
+
+                    {% if track.duration %}
+                        <time datetime="{{track.duration|datetime}}">{{track.duration|timestamp}}</time>
+                    {% endif %}
+
+                    {% if track.artwork %}
+                        {{track.artwork|artwork_img}}
+                    {% endif %}
+                </td>
+
+                <td class="disclosure">
+                    {% if track.lyrics %}
+                        <label for="lyrics_{{loop.index}}">lyrics</label>
+                    {% endif %}
+                </td>
+
+                <td class="disclosure">
+                    {% if track.about %}
+                        <label for="about_{{loop.index}}">info</label>
+                    {% endif %}
+                </td>
+
+                <td class="pad">
+                </td>
+            </tr>
+
+            <tr class="disclosure">
+                <td colspan=2></td>
+                <td colspan=3>
+
+                    {% if track.lyrics %}<input type="checkbox" id="lyrics_{{loop.index}}">
+                    <div>{{track.lyrics|lyrics}}</div>{% endif %}
+
+                    {% if track.about %}<input type="checkbox" id="about_{{loop.index}}">
+                    <div>{{track.about|markdown}}</div>{% endif %}
+                </td>
+            </tr>
+
+            {% endfor %}
+        </table>
+    <footer>
+        Powered by <a href="https://github.com/fluffy-critter/camptown">Camptown</a>
+    </footer>
+</body>
+</html>

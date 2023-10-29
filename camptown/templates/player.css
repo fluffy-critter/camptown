@@ -1,0 +1,129 @@
+:root {
+    --background:
+    /* {{ '*/
+    ' ~ (album.background or 'white') ~ '
+    /*' }} */
+    ;
+    --foreground:
+    /* {{ '*/
+    ' ~ (album.foreground or 'black') ~ '
+    /*' }} */
+    ;
+    --highlight:
+    /* {{ '*/
+    ' ~ (album.highlight or '#770000') ~ '
+    /*' }} */
+    ;
+}
+
+html {
+    font-family: sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+}
+
+h1, h2 {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+        "title artwork"
+        "player artwork";
+    background: #ccc;
+}
+
+header .title {
+    grid-area: title;
+    border: solid red 1px;
+}
+
+header img {
+    grid-area: artwork;
+    border: solid green 1px;
+}
+
+header .player {
+    grid-area: player;
+    border: solid blue 1px;
+    vertical-align: bottom;
+}
+
+a {
+    text-decoration: none;
+}
+
+a[href] {
+    color: var(--highlight);
+}
+
+.explicit .title .name::after{
+    margin-left: 2px;
+    content: "E";
+    font-size: x-small;
+    font-weight: bolder;
+    background: #ccc;
+    color: white;
+    border-radius: 2px;
+    padding: 2px;
+    vertical-align: middle;
+}
+
+.title .name {
+    margin-right: 1em;
+}
+
+.title time {
+    font-size: small;
+    font-style: italic;
+}
+
+audio {
+    width: 100%;
+}
+
+ol {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+}
+
+table#tracklist {
+    width: 100%;
+}
+
+td.idx {
+    text-align: right;
+    font-size: small;
+    font-weight: bold;
+}
+
+tr.class:hover td {
+    background: rgba(0,255,0,0.1);
+}
+
+td {
+    width: 0;
+    white-space: nowrap;
+}
+td.title, td.pad {
+    width: auto;
+}
+
+.disclosure label {
+    color: transparent;
+    padding: 0 1em;
+}
+tr:hover .disclosure label {
+    color: inherit;
+}
+
+.track img {
+    display: none;
+}
+
+input[type="checkbox"] { display: none; }
+input[type="checkbox"] + div { display: none; }
+input[type="checkbox"]:checked + div { display: inherit; }
