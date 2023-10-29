@@ -2,15 +2,28 @@ window.addEventListener("load", () => {
 
     // Only one disclosure should be open at a time
     disclosures = document.querySelectorAll('input[type="checkbox"]');
+
+    function closeOthers(disclosure) {
+        console.log("closeOthers", disclosure);
+        if (disclosure.checked) {
+            disclosures.forEach((other) => {
+                if (disclosure != other) {
+                    other.checked = false;
+                }
+            });
+        }
+    }
     disclosures.forEach((disclosure) => {
         disclosure.addEventListener("change", () => {
-            if (disclosure.checked) {
-                disclosures.forEach((other) => {
-                    if (disclosure != other) {
-                        other.checked = false;
-                    }
-                });
-            }
+            closeOthers(disclosure);
+        });
+    });
+
+    document.querySelectorAll('button[data-disclosure]').forEach((button) => {
+        button.addEventListener("click", () => {
+            var check = document.getElementById(button.dataset.disclosure);
+            check.checked = !check.checked;
+            closeOthers(check);
         });
     });
 

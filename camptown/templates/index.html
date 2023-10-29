@@ -52,13 +52,13 @@
 
                     <td class="disclosure">
                         {%- if track.lyrics -%}
-                        <label class="lyrics" for="lyrics_{{loop.index}}">lyrics</label>
+                        <button data-disclosure="lyrics_{{loop.index}}">lyrics</button>
                         {%- endif -%}
                     </td>
 
                     <td class="disclosure">
                         {%- if track.about -%}
-                        <label class="about" for="about_{{loop.index}}">info</label>
+                        <button data-disclosure="about_{{loop.index}}">info</button>
                         {%- endif -%}
                     </td>
 

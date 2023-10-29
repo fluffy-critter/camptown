@@ -163,20 +163,6 @@ tr.extinfo td {
     padding: 0;
 }
 
-#tracklist button {
-    overflow: hidden;
-    margin: 5px;
-    border-radius: 0px;
-    border: 1px solid grey;
-    background-color: white;
-    text-align: center;
-    vertical-align: middle;
-    padding: 0;
-    cursor: pointer;
-    width: 1em;
-    height: 1em;
-}
-
 #tracklist td {
     vertical-align: baseline;
 }
@@ -193,12 +179,15 @@ tr.extinfo td {
     white-space: nowrap;
 }
 
-#tracklist label {
+#tracklist .disclosure button {
     padding: 0 2em;
     font-size: small;
     font-style: italic;
+    background: transparent;
+    border: none;
+    margin: 0;
 }
-#tracklist label:hover {
+#tracklist label:hover button {
     color: var(--highlight);
 }
 

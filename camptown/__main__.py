@@ -45,12 +45,13 @@ def main():
             for key in ('1x', '2x'):
                 if key in blob['artwork']:
                     shutil.copy(os.path.join(input_dir, blob['artwork'][key]),
-                        args.output_dir)
+                                args.output_dir)
 
     copy_art(album)
     for track in album['tracks']:
         if 'filename' in track:
-            shutil.copy(os.path.join(input_dir, track['filename']), args.output_dir)
+            shutil.copy(os.path.join(
+                input_dir, track['filename']), args.output_dir)
         copy_art(track)
 
     LOGGER.info("Done")
