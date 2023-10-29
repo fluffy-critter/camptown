@@ -3,3 +3,4 @@ test_output/
 build/
 dist/
 __pycache__
+*~lock~
