@@ -2,8 +2,6 @@
     "title": "Test album",
     "artist": "The Crapshoots",
     "artwork": {
-        "width": 102,
-        "height": 150,
         "1x": "album_cover.150.jpg",
         "2x": "album_cover.300.jpg"
     },

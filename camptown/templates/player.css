@@ -41,6 +41,8 @@ h1, h2 {
 }
 
 header {
+    position: relative;
+    z-index: 1000;
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-rows: minmax(0, 1fr) auto auto;
@@ -54,11 +56,14 @@ header {
 }
 
 footer {
+    position: relative;
+    z-index: 1000;
     font-size: small;
     font-style: italic;
     background: color-mix(in srgb, var(--foreground) 10%, var(--background));
     padding-top: 0.5ex;
     border-top: solid color-mix(in srgb, var(--foreground) 25%, var(--background)) 1px;
+    box-shadow: 0px 0px 15px rgba(255,255,255,0.5);
 }
 
 footer a {
@@ -68,6 +73,8 @@ footer a {
 main {
     overflow-y: auto;
     overflow-x: hidden;
+    position: relative;
+    z-index: 10;
 }
 
 header .title {
@@ -79,6 +86,8 @@ header img {
     grid-area: artwork;
     /*border: solid green 1px;*/
     object-fit: contain;
+    max-width: 20vw;
+    height: auto;
 }
 
 header .player {
@@ -137,7 +146,7 @@ time {
     background-repeat: no-repeat;
 }
 .player button:hover {
-    border: solid var(--highlight) 1px;
+    border: var(--highlight) 1px;
     background-color: color-mix(in srgb, var(--highlight) 10%, white);
 }
 
@@ -171,13 +180,19 @@ figcaption::after {
 
 tr.file:hover {
     background: color-mix(in srgb, var(--highlight) 10%, transparent);
+    background: linear-gradient(180deg,
+        color-mix(in srgb, var(--highlight) 15%, transparent) 0%,
+        color-mix(in srgb, var(--highlight) 10%, transparent) 25%,
+        color-mix(in srgb, var(--highlight) 20%, transparent) 100%);
 }
 
 tr.track:not(:first-child) td {
     border-top: solid color-mix(in srgb, var(--foreground) 20%, transparent) 1px;
 }
 tr.track td {
-    padding: 1ex 0 0 0;
+    /*padding: 1ex 0 0.25ex 0;*/
+    vertical-align: baseline;
+    line-height: 125%;
 }
 tr.extinfo td {
     padding: 0;
@@ -197,10 +212,13 @@ tr.extinfo td {
 #tracklist td.disclosure {
     text-align: center;
     vertical-align: text-top;
-    width: 6em;
+    width: 1em;
+    margin: 0;
+    padding: 0 1ex;
 }
 #tracklist td.disclosure button:hover {
     background: color-mix(in srgb, var(--highlight) 10%, transparent);
+    border: solid color-mix(in srgb, var(--highlight) 15%, transparent) 1px;
 }
 
 #tracklist td.disclosure button {
@@ -208,9 +226,9 @@ tr.extinfo td {
     font-style: italic;
     background: transparent;
     margin: 0;
-    width: 100%;
-    border: /*solid*/ color-mix(in srgb, var(--foreground) 10%, transparent) 1px;
-    border-radius: 1ex;
+    width: 6em;
+    border-radius: 1em;
+    border: solid transparent 1px;
     vertical-align: middle;
 }
 #tracklist label:hover button {

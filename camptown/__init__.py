@@ -61,10 +61,7 @@ def markdown(text):
     if isinstance(text, list):
         text = '\n'.join(text)
 
-    LOGGER.debug("text=%s  %s", type(text), text)
-
     return Markup(mistune.create_markdown(renderer=InfoRenderer())(text))
-
 
 def artwork_img(spec, **kwargs):
     """ Convert an artwork spec to an <img> tag """
@@ -81,7 +78,6 @@ def artwork_img(spec, **kwargs):
 
     tag += '>'
     return Markup(tag)
-
 
 def seconds_timestamp(duration):
     """ Convert a duration (in seconds) to a timestamp like h:mm:ss """
@@ -101,6 +97,7 @@ def seconds_datetime(duration):
     if hours:
         return f'{hours:.0f}h {minutes:.0f}m {seconds:.0f}s'
     return f'{minutes:.0f}m {seconds:.0f}s'
+
 
 
 def process(album, output_dir, footer_text='', **kwargs):
@@ -156,9 +153,9 @@ def process(album, output_dir, footer_text='', **kwargs):
         LOGGER.info("Writing %s", tmpl)
         template = env.get_template(tmpl)
         with open(os.path.join(output_dir, tmpl), 'w', encoding='utf8') as outfile:
-            LOGGER.debug("generating %s", tmpl)
-            outfile.write(template.render(
-                album=album, footer_text=footer_text, **kwargs))
+            outfile.write(template.render(album=album, footer_text=footer_text, **kwargs))
             outfiles.append(tmpl)
 
     return outfiles
+
+
