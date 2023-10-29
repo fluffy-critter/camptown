@@ -24,6 +24,7 @@
         },
         {
             "title": "My Other Pinky",
+            "artist": "fringle",
             "filename": "test.mp3",
             "duration": 210,
             "lyrics": [

@@ -1,12 +1,10 @@
 {%- macro track_title(track) -%}
-                    {% if track.artist %}
-                    {{ track.artist }}:
-                    {% endif %}
-                    {% if track.title %}
-                    {{ track.title }}
-                    {% else %}
-                    (Track {{loop.index}})
-                    {% endif %}
+{%- if track.artist %}{{ track.artist }}: {% endif -%}
+{%- if track.title -%}
+{{ track.title }}
+{%- else -%}
+(Track {{loop.index}})
+{%- endif -%}
 {%- endmacro -%}
 
 <!DOCTYPE html>
@@ -40,13 +38,9 @@
 
                     <td class="title" colspan=2>
                         {%- if track.filename -%}
-                        <a class="name" href="{{track.filename}}">
-                            {{ track_title(track) }}
-                        </a>
+                        <a class="name" href="{{track.filename}}">{{ track_title(track) }}</a>
                         {%- else -%}
-                        <span class="name">
-                            {{ track_title(track) }}
-                        </span>
+                        <span class="name">{{ track_title(track) }}</span>
                         {%- endif -%}
                     </td>
 

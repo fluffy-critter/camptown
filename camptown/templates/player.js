@@ -39,7 +39,7 @@ window.addEventListener("load", () => {
     };
 
     function playTrack(idx) {
-        console.log("Playing track " + idx);
+        console.log("Playing track " + idx + ": " + playlist[idx].title);
     }
 
     tracks = document.querySelectorAll('#tracklist .file');
@@ -57,7 +57,7 @@ window.addEventListener("load", () => {
 
         if (link) {
             var idx = playlist.length;
-            playlist.push(track);
+            playlist.push(entry);
             track.addEventListener("click", () => {
                 playTrack(idx);
             });
