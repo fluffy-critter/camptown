@@ -73,12 +73,13 @@ a[href] {
 }
 
 .title .name {
-    margin-right: 1em;
+    margin-right: 1ex;
 }
 
 .title time {
     font-size: small;
     font-style: italic;
+    opacity: 50%;
 }
 
 audio {
@@ -86,37 +87,13 @@ audio {
 }
 
 ol {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto auto;
 }
 
-table#tracklist {
-    width: 100%;
-}
-
-td.idx {
-    text-align: right;
-    font-size: small;
-    font-weight: bold;
-}
-
-tr.class:hover td {
-    background: rgba(0,255,0,0.1);
-}
-
-td {
-    width: 0;
-    white-space: nowrap;
-}
-td.title, td.pad {
-    width: auto;
-}
-
-.disclosure label {
+label {
     color: transparent;
     padding: 0 1em;
 }
-tr:hover .disclosure label {
+li:hover label {
     color: inherit;
 }
 
@@ -126,4 +103,4 @@ tr:hover .disclosure label {
 
 input[type="checkbox"] { display: none; }
 input[type="checkbox"] + div { display: none; }
-input[type="checkbox"]:checked + div { display: inherit; }
+input[type="checkbox"]:checked + div { display: block; }

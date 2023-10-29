@@ -1,3 +1,14 @@
+{%- macro track_title(track) -%}
+                    {% if track.artist %}
+                    {{ track.artist }}:
+                    {% endif %}
+                    {% if track.title %}
+                    {{ track.title }}
+                    {% else %}
+                    (Track {{loop.index}})
+                    {% endif %}
+{%- endmacro -%}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,26 +30,20 @@
             </div>
             {{album.artwork|artwork_img(id="coverart")}}
         </header>
-        <table id="tracklist">
+        <ol id="tracklist">
             {% for track in album.tracks %}
-            <tr class="track{% if track.explicit %} explicit{% endif %}">
-                <td class="player"></td>
-                <td class="idx">
-                    {{loop.index}}
-                </td>
-                <td class="title">
-                    {% if track.filename %}<a class="name" href="{{track.filename}}">{% else %}<span class="name">{% endif %}
-
-                    {% if track.artist %}
-                    {{ track.artist }}:
-                    {% endif %}
-                    {% if track.title %}
-                    {{ track.title }}
-                    {% else %}
-                    (Track {{loop.index}})
-                    {% endif %}
-
-                    {% if track.filename %}</a>{% else %}</span>{% endif %}
+            <li class="track{% if track.explicit %} explicit{% endif %}">
+                <span class="player"></span>
+                <span class="title">
+                    {%- if track.filename -%}
+                    <a class="name" href="{{track.filename}}">
+                        {{ track_title(track) }}
+                    </a>
+                    {%- else -%}
+                    <span class="name">
+                        {{ track_title(track) }}
+                    </span>
+                    {%- endif -%}
 
                     {% if track.duration %}
                         <time datetime="{{track.duration|datetime}}">{{track.duration|timestamp}}</time>
@@ -47,38 +52,28 @@
                     {% if track.artwork %}
                         {{track.artwork|artwork_img}}
                     {% endif %}
-                </td>
+                </span>
 
-                <td class="disclosure">
-                    {% if track.lyrics %}
-                        <label for="lyrics_{{loop.index}}">lyrics</label>
-                    {% endif %}
-                </td>
+                {% if track.lyrics %}
+                <label class="lyrics" for="lyrics_{{loop.index}}">lyrics</label>
+                {% endif %}
 
-                <td class="disclosure">
-                    {% if track.about %}
-                        <label for="about_{{loop.index}}">info</label>
-                    {% endif %}
-                </td>
+                {% if track.about %}
+                <label class="about" for="about_{{loop.index}}">info</label>
+                {% endif %}
 
-                <td class="pad">
-                </td>
-            </tr>
+                {% if track.lyrics %}
+                <input type="checkbox" id="lyrics_{{loop.index}}">
+                <div class="disclosure">{{track.lyrics|lyrics}}</div>
+                {% endif %}
 
-            <tr class="disclosure">
-                <td colspan=2></td>
-                <td colspan=3>
-
-                    {% if track.lyrics %}<input type="checkbox" id="lyrics_{{loop.index}}">
-                    <div>{{track.lyrics|lyrics}}</div>{% endif %}
-
-                    {% if track.about %}<input type="checkbox" id="about_{{loop.index}}">
-                    <div>{{track.about|markdown}}</div>{% endif %}
-                </td>
-            </tr>
-
+                {% if track.about %}
+                <input type="checkbox" id="about_{{loop.index}}">
+                <div class="disclosure">{{track.about|markdown}}</div>
+                {% endif %}
+            </li>
             {% endfor %}
-        </table>
+        </ol>
     <footer>
         Powered by <a href="https://github.com/fluffy-critter/camptown">Camptown</a>
     </footer>

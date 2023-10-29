@@ -67,7 +67,7 @@ def markdown(text):
 
 def artwork_img(spec, **kwargs):
     """ Convert an artwork spec to an <img> tag """
-    tag = f'<img src="{escape(spec["1x"])}" loading="lazy"'
+    tag = f'<img alt="" src="{escape(spec["1x"])}" loading="lazy"'
     if 'width' in spec:
         tag += f' width="{escape(spec["width"])}"'
     if 'height' in spec:
