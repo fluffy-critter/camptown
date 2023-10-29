@@ -128,12 +128,17 @@ time {
 .player button {
     width: 3em;
     height: 3em;
-    border: solid black 1px;
+    border: solid var(--foreground) 1px;
     border-radius: 4px;
-    background: white;
+    background-color: white;
+    color: black;
     background-position: center center;
     background-size: 90%;
     background-repeat: no-repeat;
+}
+.player button:hover {
+    border: solid var(--highlight) 1px;
+    background-color: color-mix(in srgb, var(--highlight) 10%, white);
 }
 
 audio {
