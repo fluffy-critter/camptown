@@ -102,7 +102,7 @@ def seconds_datetime(duration):
 
 
 
-def process(album, output_dir):
+def process(album, output_dir, footer_text='', **kwargs):
     """ Process an album into its output
 
     :param dict album: The album data
@@ -152,4 +152,5 @@ def process(album, output_dir):
         template = env.get_template(tmpl)
         with open(os.path.join(output_dir, tmpl), 'w', encoding='utf8') as outfile:
             LOGGER.debug("generating %s", tmpl)
-            outfile.write(template.render(album=album))
+            outfile.write(template.render(album=album, footer_text=footer_text, **kwargs))
+

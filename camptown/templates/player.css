@@ -22,6 +22,19 @@ html {
     color: var(--foreground);
 }
 
+body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    overflow: hidden;
+}
+
 h1, h2 {
     margin: 0;
     padding: 0;
@@ -29,26 +42,42 @@ h1, h2 {
 
 header {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
     grid-template-areas:
-        "title artwork"
-        "player artwork";
-    background: #ccc;
+        "title now-playing artwork"
+        "player player artwork";
+    background: color-mix(in srgb, var(--foreground) 5%, var(--background));
+}
+
+footer {
+    font-size: small;
+    font-style: italic;
+    background: color-mix(in srgb, var(--foreground) 10%, var(--background));
+}
+
+footer a {
+    font-weight: bold;
+}
+
+main {
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 header .title {
     grid-area: title;
-    border: solid red 1px;
+    /*border: solid red 1px;*/
 }
 
 header img {
     grid-area: artwork;
-    border: solid green 1px;
+    /*border: solid green 1px;*/
+    object-fit: contain;
 }
 
 header .player {
     grid-area: player;
-    border: solid blue 1px;
+    /*border: solid blue 1px;*/
     vertical-align: bottom;
 }
 
@@ -76,31 +105,107 @@ a[href] {
     margin-right: 1ex;
 }
 
-.title time {
+time {
     font-size: small;
     font-style: italic;
     opacity: 50%;
 }
 
+.player {
+    display: flex;
+    align-items: center;
+    column-gap: 1ex;
+    padding-right: 1ex;
+}
+
 audio {
-    width: 100%;
+    flex-grow: 1;
 }
 
-ol {
+.player button {
+    width: 3em;
+    height: 3em;
 }
-
-label {
-    color: transparent;
-    padding: 0 1em;
-}
-li:hover label {
-    color: inherit;
-}
-
 .track img {
     display: none;
 }
 
 input[type="checkbox"] { display: none; }
-input[type="checkbox"] + div { display: none; }
-input[type="checkbox"]:checked + div { display: block; }
+input[type="checkbox"] + figure { display: none; }
+input[type="checkbox"]:checked + figure { display: block; }
+figcaption {
+    font-size: small;
+    font-weight: bold;
+}
+figcaption::after {
+    content: ':';
+}
+
+#nowplaying {
+    grid-area: now-playing;
+}
+
+#tracklist {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tr.file:hover {
+    background: color-mix(in srgb, var(--highlight) 10%, transparent);
+}
+
+tr.track td {
+    border-top: solid color-mix(in srgb, var(--foreground) 20%, transparent) 1px;
+    padding: 1ex 0 0 0;
+}
+tr.extinfo td {
+    border-bottom: solid color-mix(in srgb, var(--foreground) 20%, transparent) 1px;
+    padding: 0;
+}
+
+#tracklist button {
+    overflow: hidden;
+    margin: 5px;
+    border-radius: 0px;
+    border: 1px solid grey;
+    background-color: white;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
+    cursor: pointer;
+    width: 1em;
+    height: 1em;
+}
+
+#tracklist td {
+    vertical-align: baseline;
+}
+
+#tracklist td.idx {
+    width: 1%;
+    white-space: nowrap;
+    text-align: right;
+    font-size: small;
+    opacity: 50%;
+}
+#tracklist td.disclosure {
+    width: 1%;
+    white-space: nowrap;
+}
+
+#tracklist label {
+    padding: 0 2em;
+    font-size: small;
+    font-style: italic;
+}
+#tracklist label:hover {
+    color: var(--highlight);
+}
+
+#tracklist td.title {
+    width: auto;
+}
+
+#tracklist title {
+    width: 100%;
+}
