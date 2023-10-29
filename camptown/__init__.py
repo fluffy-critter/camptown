@@ -138,6 +138,8 @@ def process(album, output_dir, footer_text='', **kwargs):
             ]
         }
 
+    :returns: the list of generated files, relative to output_dir
+
     """
 
     env = jinja2.Environment(
@@ -148,6 +150,8 @@ def process(album, output_dir, footer_text='', **kwargs):
     env.filters['timestamp'] = seconds_timestamp
     env.filters['datetime'] = seconds_datetime
 
+    outfiles = []
+
     for tmpl in ('index.html', 'player.js', 'player.css'):
         LOGGER.info("Writing %s", tmpl)
         template = env.get_template(tmpl)
@@ -155,3 +159,6 @@ def process(album, output_dir, footer_text='', **kwargs):
             LOGGER.debug("generating %s", tmpl)
             outfile.write(template.render(
                 album=album, footer_text=footer_text, **kwargs))
+            outfiles.append(tmpl)
+
+    return outfiles
