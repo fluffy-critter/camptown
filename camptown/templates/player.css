@@ -42,17 +42,23 @@ h1, h2 {
 
 header {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: minmax(0, 1fr) auto auto;
     grid-template-areas:
-        "title now-playing artwork"
-        "player player artwork";
+        "title  artwork"
+        "now-playing artwork"
+        "player  artwork";
     background: color-mix(in srgb, var(--foreground) 5%, var(--background));
+    border-bottom: solid color-mix(in srgb, var(--foreground) 25%, var(--background)) 1px;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.25);
 }
 
 footer {
     font-size: small;
     font-style: italic;
     background: color-mix(in srgb, var(--foreground) 10%, var(--background));
+    padding-top: 0.5ex;
+    border-top: solid color-mix(in srgb, var(--foreground) 25%, var(--background)) 1px;
 }
 
 footer a {
@@ -79,6 +85,7 @@ header .player {
     grid-area: player;
     /*border: solid blue 1px;*/
     vertical-align: bottom;
+    margin-bottom: 1ex;
 }
 
 a {
@@ -154,12 +161,13 @@ tr.file:hover {
     background: color-mix(in srgb, var(--highlight) 10%, transparent);
 }
 
-tr.track td {
+tr.track:not(:first-child) td {
     border-top: solid color-mix(in srgb, var(--foreground) 20%, transparent) 1px;
+}
+tr.track td {
     padding: 1ex 0 0 0;
 }
 tr.extinfo td {
-    border-bottom: solid color-mix(in srgb, var(--foreground) 20%, transparent) 1px;
     padding: 0;
 }
 
@@ -168,24 +176,30 @@ tr.extinfo td {
 }
 
 #tracklist td.idx {
-    width: 1%;
-    white-space: nowrap;
+    width: 2em;
     text-align: right;
     font-size: small;
     opacity: 50%;
+    padding-left: 1ex;
 }
 #tracklist td.disclosure {
-    width: 1%;
-    white-space: nowrap;
+    text-align: center;
+    vertical-align: text-top;
+    width: 6em;
+}
+#tracklist td.disclosure button:hover {
+    background: color-mix(in srgb, var(--highlight) 10%, transparent);
 }
 
-#tracklist .disclosure button {
-    padding: 0 2em;
+#tracklist td.disclosure button {
     font-size: small;
     font-style: italic;
     background: transparent;
-    border: none;
     margin: 0;
+    width: 100%;
+    border: /*solid*/ color-mix(in srgb, var(--foreground) 10%, transparent) 1px;
+    border-radius: 1ex;
+    vertical-align: middle;
 }
 #tracklist label:hover button {
     color: var(--highlight);
@@ -195,6 +209,8 @@ tr.extinfo td {
     width: auto;
 }
 
-#tracklist title {
-    width: 100%;
+#tracklist td.duration {
+    width: 4em;
+    text-align: right;
+    padding-right: 1em;
 }
