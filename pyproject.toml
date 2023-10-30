@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "camptown"
-version = "0.2.2"
+version = "0.2.3"
 description = "Semantic-HTML player engine"
 authors = ["fluffy <fluffy@beesbuzz.biz>"]
 license = "MIT"

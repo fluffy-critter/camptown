@@ -56,7 +56,8 @@ def main():
 
     theme = album.get('theme', {})
     if 'user_css' in theme:
-        shutil.copy(os.path.join(input_dir, theme['user_css']), args.output_dir)
+        shutil.copy(os.path.join(
+            input_dir, theme['user_css']), args.output_dir)
 
     LOGGER.info("Done")
 
