@@ -4,6 +4,7 @@ import logging
 import os
 import os.path
 import typing
+
 import jinja2
 import mistune
 from markupsafe import Markup, escape
@@ -18,6 +19,7 @@ LOGGER = logging.getLogger(__name__)
 
 CAMPTOWN_URL = 'https://github.com/fluffy-critter/camptown'
 DEFAULT_FOOTER_TEXT = f'Powered by <a href="{CAMPTOWN_URL}">Camptown</a> {__version__}'
+
 
 def lyrics(text):
     """ Given lines of text, produce nice markup for lyrics """
@@ -65,6 +67,7 @@ def markdown(text):
 
     return Markup(mistune.create_markdown(renderer=InfoRenderer())(text))
 
+
 def artwork_img(spec, **kwargs):
     """ Convert an artwork spec to an <img> tag """
     tag = '<img alt="" loading="lazy"'
@@ -82,6 +85,7 @@ def artwork_img(spec, **kwargs):
 
     tag += '>'
     return Markup(tag)
+
 
 def seconds_timestamp(duration):
     """ Convert a duration (in seconds) to a timestamp like h:mm:ss """
@@ -103,9 +107,8 @@ def seconds_datetime(duration):
     return f'{minutes:.0f}m {seconds:.0f}s'
 
 
-
-def process(album, output_dir, footer_urls:typing.Optional[list[tuple[str,str]]]=None,
-    **kwargs):
+def process(album, output_dir, footer_urls: typing.Optional[list[tuple[str, str]]] = None,
+            **kwargs):
     """ Process an album into its output
 
     :param dict album: The album data
@@ -161,18 +164,16 @@ def process(album, output_dir, footer_urls:typing.Optional[list[tuple[str,str]]]
 
     footer_text = Markup("Made with " + ' + '.join([
         f'<a href="{url}" target="_blank" rel="noopener">{text}</a>'
-        for url,text in urls]))
+        for url, text in urls]))
 
     for tmpl in ('index.html', 'player.js', 'player.css'):
         LOGGER.info("Writing %s", tmpl)
         template = env.get_template(tmpl)
         with open(os.path.join(output_dir, tmpl), 'w', encoding='utf8') as outfile:
             outfile.write(template.render(album=album,
-                footer_text=footer_text,
-                version=__version__,
-                **kwargs))
+                                          footer_text=footer_text,
+                                          version=__version__,
+                                          **kwargs))
             outfiles.append(tmpl)
 
     return outfiles
-
-
