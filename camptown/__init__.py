@@ -3,6 +3,7 @@
 import logging
 import os
 import os.path
+import typing
 
 import jinja2
 import mistune
@@ -15,6 +16,9 @@ except ImportError:
 
 
 LOGGER = logging.getLogger(__name__)
+
+CAMPTOWN_URL = 'https://github.com/fluffy-critter/camptown'
+DEFAULT_FOOTER_TEXT = f'Powered by <a href="{CAMPTOWN_URL}">Camptown</a> {__version__}'
 
 
 def lyrics(text):
@@ -66,7 +70,9 @@ def markdown(text):
 
 def artwork_img(spec, **kwargs):
     """ Convert an artwork spec to an <img> tag """
-    tag = f'<img alt="" src="{escape(spec["1x"])}" loading="lazy"'
+    tag = '<img alt="" loading="lazy"'
+    if '1x' in spec:
+        tag += f' src="{escape(spec["1x"])}"'
     if 'width' in spec:
         tag += f' width="{escape(spec["width"])}"'
     if 'height' in spec:
@@ -101,11 +107,13 @@ def seconds_datetime(duration):
     return f'{minutes:.0f}m {seconds:.0f}s'
 
 
-def process(album, output_dir, footer_text='', **kwargs):
+def process(album, output_dir, footer_urls: typing.Optional[list[tuple[str, str]]] = None,
+            **kwargs):
     """ Process an album into its output
 
     :param dict album: The album data
     :param str output_dir: Output directory to receive the output
+    :param list[tuple[str,str]] footer_urls: A set of (url,text) for URLs to add to the page footer
 
     Album data is formatted like:
 
@@ -149,6 +157,14 @@ def process(album, output_dir, footer_text='', **kwargs):
     env.filters['datetime'] = seconds_datetime
 
     outfiles = []
+
+    urls = [(CAMPTOWN_URL, 'Camptown')]
+    if footer_urls:
+        urls += footer_urls
+
+    footer_text = Markup("Made with " + ' + '.join([
+        f'<a href="{url}" target="_blank" rel="noopener">{text}</a>'
+        for url, text in urls]))
 
     for tmpl in ('index.html', 'player.js', 'player.css'):
         LOGGER.info("Writing %s", tmpl)

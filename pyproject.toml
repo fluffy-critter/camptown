@@ -5,6 +5,7 @@ description = "Semantic-HTML player engine"
 authors = ["fluffy <fluffy@beesbuzz.biz>"]
 license = "MIT"
 readme = "README.md"
+repository = "https://github.com/fluffy-critter/camptown"
 
 [tool.poetry.dependencies]
 python = "^3.8"

@@ -96,6 +96,7 @@ window.addEventListener("load", () => {
     player.addEventListener("ended", () => {
         playlist[currentTrack].row.classList.remove("now-playing");
         if (currentTrack + 1 < playlist.length) {
+            console.log(`finished ${currentTrack + 1}/${playlist.length}`);
             ++currentTrack;
             let track = playlist[currentTrack];
             player.src = track.url;
@@ -104,6 +105,9 @@ window.addEventListener("load", () => {
                 behafior: 'smooth',
                 block: 'nearest',
             });
+        } else {
+            console.log("Playback ended");
+            nowPlaying.textContent = '';
         }
     });
 

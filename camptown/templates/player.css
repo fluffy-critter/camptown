@@ -86,7 +86,7 @@ header img {
     grid-area: artwork;
     /*border: solid green 1px;*/
     object-fit: contain;
-    max-width: 20vw;
+    max-width: 25vw;
     height: auto;
 }
 
