@@ -107,7 +107,7 @@ window.addEventListener("load", () => {
         }
     });
 
-    document.getElementById("previous").addEventListener("click", () => {
+    function prevTrack() {
         playlist[currentTrack].row.classList.remove("now-playing");
         if (player.paused || player.currentTime < 2) {
             // We're paused or near the start of a track, so go to the previous track
@@ -126,8 +126,9 @@ window.addEventListener("load", () => {
             player.currentTime = 0;
         }
         playlist[currentTrack].row.classList.add("now-playing");
-    });
-    document.getElementById("next").addEventListener("click", () => {
+    }
+
+    function nextTrack() {
         playlist[currentTrack].row.classList.remove("now-playing");
         if (currentTrack + 1 < playlist.length) {
         var paused = player.paused;
@@ -140,6 +141,32 @@ window.addEventListener("load", () => {
             }
         }
         playlist[currentTrack].row.classList.add("now-playing");
+    }
+
+    document.getElementById("previous").addEventListener("click", prevTrack);
+    document.getElementById("next").addEventListener("click", nextTrack);
+
+    window.addEventListener("keydown", (e) => {
+        e = e || window.event;
+        console.log(e);
+        switch (e.key) {
+        case ' ':
+            e.preventDefault();
+            if (player.paused) {
+                player.play();
+            } else {
+                player.pause();
+            }
+            break;
+        case 'ArrowLeft':
+            e.preventDefault();
+            prevTrack();
+            break;
+        case 'ArrowRight':
+            e.preventDefault();
+            nextTrack();
+            break;
+        }
     });
 });
 
