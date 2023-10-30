@@ -21,9 +21,19 @@
     </head>
     <body>
         <header>
-            <div class="title">
-                <h1><a href="{{album.album_url}}" target="_blank" rel="noopener">{{album.title}}</a></h1>
-                <h2>by <a href="{{album.artist_url}}" target="_blank" rel="noopener">{{album.artist}}</a></h2>
+            <div id="title">
+                <h1>{%- if album.album_url -%}
+                    <a id="album" href="{{album.album_url}}" target="_blank" rel="noopener">{{album.title}}</a>
+                    {%- else -%}
+                    <span id="album">{{album.title}}</span>
+                    {%- endif -%}
+                </h1>
+                <h2>by {% if album.artist_url -%}
+                    <a id="artist" href="{{album.artist_url}}" target="_blank" rel="noopener">{{album.artist}}</a>
+                    {%- else -%}
+                    <span id="artist">{{album.artist}}</span>
+                    {%- endif -%}
+                </h2>
             </div>
             <div class="player">
                 <audio controls></audio>
@@ -35,7 +45,7 @@
         </header>
         <main>
             <table id="tracklist">
-                {% for track in album.tracks %}
+                {% for track in tracks %}
                 <tr class="track{% if track.filename %} file{%endif %}{% if track.explicit %} explicit{% endif %}">
 
                     <td class="idx">{{loop.index}}.</td>
@@ -94,6 +104,8 @@
                 {% endfor %}
             </table>
         </main>
+        {% if not theme.hide_footer %}
         <footer>{{footer_text}}</footer>
+        {% endif %}
     </body>
 </html>

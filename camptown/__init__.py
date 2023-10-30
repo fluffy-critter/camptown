@@ -18,7 +18,6 @@ except ImportError:
 LOGGER = logging.getLogger(__name__)
 
 CAMPTOWN_URL = 'https://github.com/fluffy-critter/camptown'
-DEFAULT_FOOTER_TEXT = f'Powered by <a href="{CAMPTOWN_URL}">Camptown</a> {__version__}'
 
 
 def lyrics(text):
@@ -73,10 +72,6 @@ def artwork_img(spec, **kwargs):
     tag = '<img alt="" loading="lazy"'
     if '1x' in spec:
         tag += f' src="{escape(spec["1x"])}"'
-    if 'width' in spec:
-        tag += f' width="{escape(spec["width"])}"'
-    if 'height' in spec:
-        tag += f' height="{escape(spec["height"])}"'
     if '2x' in spec:
         tag += f' srcset="{escape(spec["1x"])} 1x, {escape(spec["2x"])} 2x"'
 
@@ -113,36 +108,98 @@ def process(album, output_dir, footer_urls: typing.Optional[list[tuple[str, str]
 
     :param dict album: The album data
     :param str output_dir: Output directory to receive the output
-    :param list[tuple[str,str]] footer_urls: A set of (url,text) for URLs to add to the page footer
+    :param list[tuple[str,str]] footer_urls: A set of (url,text) for URLs to add
+        to the page footer
 
-    Album data is formatted like:
+    Album data is a :py:class:`dict` with the following keys and values:
+
+    :param str artist: The recording artist's name
+    :param str title: The title of the album
+    :param str artist_url: The recording artist's homepage/website
+    :param str album_url: The canonical web address for this album
+    :param dict artwork: The album-level artwork data
+    :param list[dict] tracks: The individual tracks of this album
+    :param dict theme: Visual theme settings
+
+    Artwork data is a :py:class:`dict` with the following keys:
+
+    :param str 1x: The normal-DPI rendition of the thumbnail
+    :param str 2x: The high-DPI rendition of the thumbnail
+    :param str fullsize: The fullsize rendition of the artwork
+
+    Track data is a :py:class:`list` of :py:class:`dict` of the following data
+    for each track:
+
+    :param str title: The title of the track
+    :param str filename: The preview audio file (optional)
+    :param dict artwork: Track-level artwork data
+    :param bool explicit: Whether this track contains explicit lyrics
+    :param int duration: The length of the track (in seconds)
+    :param lyrics: The lyrics of the song, either as a big newline-separated
+        string or as a :py:class:`list` of strings (one per line).
+    :param about: The extended information of the track, either as a
+        newline-separated string or as a :py:class:`list` of strings (one per
+        line). This text may be formatted with `markdown <https://commonmark.org/>`_.
+
+    The visual theme settings are as follows:
+
+    :param str foreground: Foreground text color
+    :param str background: Background color
+    :param str highlight: Highlight text color
+    :param bool hide_footer: Whether to hide the "Made with" footer
+    :param str user_css: User CSS file to include, for deeper visual customization
+
+    A simple example follows:
 
     .. code-block:: python
 
-        album = {
-            "artist": "The album artist",
-            "title": "The title of the album",
-            "artwork": {                            # optional
-                "width": 300,                       # optional
-                "height": 300,                      # optional
-                "1x": "image-300x300.jpg",
-                "2x": "image-600x600.jpg"           # optional
+        camptown.process({
+            "artist": "Sluggy Puppernutters",
+            "title": "Self-Titled Album",
+
+            "artist_url": "https://sluggy.example",
+            "album_url": "https://sluggy.example/album/self-titled",
+
+            "artwork": {
+                "1x": "album-art-thumb.jpg",
+                "2x": "album-art-hidpi.jpg",
+                "fullsize": "album-art-fullsize.jpg"
             },
+
             "tracks": [
                 {
-                    "title": "The title of the track",
-                    "filename": "audio file.mp3",   # optional - won't get a player if missing
-                    "artwork": {                    # optional - overrides the album artwork
-                        "width": 300,               # optional
-                        "height": 300,              # optional
-                        "1x": "image-300x300.jpg",
-                        "2x": "image-600x600.jpg"   # optional
+                    "title": "Hit Single",
+                    "filename": "hit single.mp3",
+                    "artwork": {
+                        "1x": "hit-single-thumb.jpg"
                     },
-                    "explicit": True                # optional
-                    "duration": 273                 # optional, time in seconds
+                    "explicit": True,
+                    "duration": 273
+                },
+                {
+                    "title": "We Hate Our Hit Single",
+                    "filename": "something else.mp3",
+                    "explicit": True,
+                    "duration": 273
+                },
+                {
+                    "title": "You'll have to buy the album to hear this one",
+                    "duration": 3600
                 }
-            ]
-        }
+            ],
+            "theme": {
+                "foreground": "white",
+                "background": "black",
+                "highlight": "yellow",
+                "hide_footer": False,
+                "user_css": "fancypants.css"
+            }
+        }, "my_album/preview")
+
+
+    Note that this will *only* generate Camptown's own files into the specified
+    directory; it is up to the caller to transcode/copy audio, images, and user CSS
+    into the output directory. All path names are relative to `output_dir`.
 
     :returns: the list of generated files, relative to output_dir
 
@@ -171,6 +228,8 @@ def process(album, output_dir, footer_urls: typing.Optional[list[tuple[str, str]
         template = env.get_template(tmpl)
         with open(os.path.join(output_dir, tmpl), 'w', encoding='utf8') as outfile:
             outfile.write(template.render(album=album,
+                                          theme=album.get('theme', {}),
+                                          tracks=album.get('tracks', []),
                                           footer_text=footer_text,
                                           version=__version__,
                                           **kwargs))

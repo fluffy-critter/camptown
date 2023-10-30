@@ -1,17 +1,17 @@
 :root {
     --background:
     /* {{ '*/
-    ' ~ (album.background or 'white') ~ '
+    ' ~ (theme.background or 'white') ~ '
     /*' }} */
     ;
     --foreground:
     /* {{ '*/
-    ' ~ (album.foreground or 'black') ~ '
+    ' ~ (theme.foreground or 'black') ~ '
     /*' }} */
     ;
     --highlight:
     /* {{ '*/
-    ' ~ (album.highlight or '#770000') ~ '
+    ' ~ (theme.highlight or '#770000') ~ '
     /*' }} */
     ;
 }
@@ -52,7 +52,7 @@ header {
         "player      artwork";
     background: color-mix(in srgb, var(--foreground) 5%, var(--background));
     border-bottom: solid color-mix(in srgb, var(--foreground) 25%, var(--background)) 1px;
-    box-shadow: 0px 0px 5px rgba(0,0,0,0.25);
+    box-shadow: 0px 0px 5px color-mix(in srgb, var(--foreground) 25%, var(--transparent));
 }
 
 footer {
@@ -63,7 +63,7 @@ footer {
     background: color-mix(in srgb, var(--foreground) 10%, var(--background));
     padding-top: 0.5ex;
     border-top: solid color-mix(in srgb, var(--foreground) 25%, var(--background)) 1px;
-    box-shadow: 0px 0px 15px rgba(255,255,255,0.5);
+    box-shadow: 0px 0px 5px color-mix(in srgb, var(--background) 50%, var(--transparent));
 }
 
 footer a {
@@ -77,14 +77,12 @@ main {
     z-index: 10;
 }
 
-header .title {
+header #title {
     grid-area: title;
-    /*border: solid red 1px;*/
 }
 
 header img {
     grid-area: artwork;
-    /*border: solid green 1px;*/
     object-fit: contain;
     max-width: 25vw;
     height: auto;
@@ -92,7 +90,6 @@ header img {
 
 header .player {
     grid-area: player;
-    /*border: solid blue 1px;*/
     vertical-align: bottom;
     margin-bottom: 1ex;
 }
@@ -201,6 +198,10 @@ tr.track td {
 tr.extinfo td {
     padding: 0;
 }
+.extinfo img {
+    max-width: 100%;
+    max-height: auto;
+}
 
 #tracklist td {
     vertical-align: baseline;
@@ -245,6 +246,7 @@ tr.extinfo td {
     border: solid transparent 1px;
     vertical-align: middle;
 }
+
 #tracklist label:hover button {
     color: var(--highlight);
 }
@@ -266,3 +268,7 @@ button#previous {
 button#next {
     background-image: url('data:image/svg+xml,<svg width="100%" height="100%" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g><path d="M59.019,32.071c0.509,-0.508 0.78,-1.206 0.747,-1.924c-0.033,-0.718 -0.366,-1.389 -0.918,-1.849c-4.771,-3.976 -16.309,-13.591 -22.562,-18.802c-0.762,-0.635 -1.823,-0.772 -2.722,-0.351c-0.899,0.421 -1.473,1.324 -1.473,2.316c-0,9.94 -0,30.92 -0,41.364c-0,1.034 0.623,1.967 1.579,2.363c0.956,0.396 2.056,0.177 2.787,-0.554c6.368,-6.368 17.943,-17.944 22.562,-22.563Z"/><path d="M34.929,32.071c0.508,-0.508 0.779,-1.206 0.746,-1.924c-0.032,-0.718 -0.366,-1.389 -0.918,-1.849c-4.771,-3.976 -16.309,-13.591 -22.562,-18.802c-0.762,-0.635 -1.823,-0.772 -2.722,-0.351c-0.899,0.421 -1.473,1.324 -1.473,2.316c0,9.94 0,30.92 0,41.364c-0,1.034 0.623,1.967 1.579,2.363c0.956,0.396 2.056,0.177 2.787,-0.554c6.368,-6.368 17.944,-17.944 22.563,-22.563Z"/></g></svg>');
 }
+
+/* {% if theme.user_css %} */
+@import url("{{theme.user_css}}");
+/* {% endif %} */

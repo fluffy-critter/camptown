@@ -1,3 +1,8 @@
+/* Camptown player logic
+
+https://github.com/fluffy-critter/camptown
+ */
+
 window.addEventListener("load", () => {
     let player = document.querySelector('audio');
     let nowPlaying = document.getElementById("nowplaying");
