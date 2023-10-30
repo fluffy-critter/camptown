@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "camptown"
-version = "0.1.1"
+version = "0.1.2"
 description = "Semantic-HTML player engine"
 authors = ["fluffy <fluffy@beesbuzz.biz>"]
 license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.8"
 Jinja2 = "^3.1.2"
 mistune = "^3.0.2"
 markupsafe = "^2.1.3"
