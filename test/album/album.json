@@ -29,6 +29,7 @@
             "title": "no preview",
             "duration": 273
         },
+        {},
         {
             "title": "My Other Pinky",
             "artist": "fringle",
@@ -49,7 +50,6 @@
             ]
         },
         {
-            "title": "My Pinky",
             "filename": "test.mp3",
             "duration": 60,
             "artwork": {

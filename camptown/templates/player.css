@@ -255,6 +255,10 @@ tr.extinfo td {
     width: auto;
 }
 
+.untitled {
+    opacity: 50%;
+}
+
 #tracklist td.duration {
     width: 4em;
     text-align: right;
