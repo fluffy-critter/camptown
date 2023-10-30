@@ -1,4 +1,5 @@
 import sphinx_rtd_theme
+
 project = "camptown"
 master_doc = "index"
 extensions = ["sphinx.ext.autodoc"]
