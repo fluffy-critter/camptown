@@ -15,7 +15,12 @@
         <title>{{album.artist}}: {{album.title}}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="generator" content="camptown v{{version}}" />
-        <link rel="stylesheet" href="player.css">
+        <style>
+            @import url('player.css');
+            {% if theme.user_css %}
+            @import url('{{theme.user_css}}');
+            {% endif %}
+        </style>
         <script src="player.js">
         </script>
     </head>

@@ -42,7 +42,7 @@ def main():
 
     def copy_art(blob):
         if 'artwork' in blob:
-            for key in ('1x', '2x'):
+            for key in ('1x', '2x', 'fullsize'):
                 if key in blob['artwork']:
                     shutil.copy(os.path.join(input_dir, blob['artwork'][key]),
                                 args.output_dir)
@@ -53,6 +53,10 @@ def main():
             shutil.copy(os.path.join(
                 input_dir, track['filename']), args.output_dir)
         copy_art(track)
+
+    theme = album.get('theme', {})
+    if 'user_css' in theme:
+        shutil.copy(os.path.join(input_dir, theme['user_css']), args.output_dir)
 
     LOGGER.info("Done")
 

@@ -12,7 +12,8 @@
         "foreground": "#330000",
         "background": "yellow",
         "highlight": "#006600",
-        "hide_footer": true
+        "hide_footer": true,
+        "user_css": "blah.css"
     },
     "tracks": [
         {
