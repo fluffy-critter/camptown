@@ -4,3 +4,5 @@ build/
 dist/
 __pycache__
 *~lock~
+docs/_build/
+.DS_Store

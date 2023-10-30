@@ -51,3 +51,8 @@ clean:
 .PHONY: upload
 upload: clean test build
 	poetry publish
+
+.PHONY: doc
+doc:
+	poetry run sphinx-build -b html docs/ docs/_build -D html_theme=alabaster
+
