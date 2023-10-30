@@ -6,6 +6,9 @@ authors = ["fluffy <fluffy@beesbuzz.biz>"]
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/fluffy-critter/camptown"
+include = [
+    "camptown/__version__.py"
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
