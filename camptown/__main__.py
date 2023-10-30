@@ -16,7 +16,7 @@ LOGGER = logging.getLogger(__name__)
 def main():
     """ Simple CLI for test purposes, mostly """
 
-    parser = argparse.ArgumentParser("Build a Camptown player")
+    parser = argparse.ArgumentParser("camptown")
     parser.add_argument("input_file", type=str, help="Album specfile")
     parser.add_argument("output_dir", type=str, help="Output directory")
     parser.add_argument("-v", "--verbosity", action="count",
