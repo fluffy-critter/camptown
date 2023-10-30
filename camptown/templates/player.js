@@ -107,7 +107,39 @@ window.addEventListener("load", () => {
         }
     });
 
-    // document.getElementById("previous").addEventListener("click", prevTrack);
-    // document.getElementById("next").addEventListener("click", nextTrack);
+    document.getElementById("previous").addEventListener("click", () => {
+        playlist[currentTrack].row.classList.remove("now-playing");
+        if (player.paused || player.currentTime < 2) {
+            // We're paused or near the start of a track, so go to the previous track
+            var paused = player.paused;
+            player.pause();
+            if (currentTrack > 0) {
+                --currentTrack;
+                player.src = playlist[currentTrack].url;
+            }
+            player.currentTime = 0;
+            if (!paused) {
+                player.play();
+            }
+        } else {
+            // We're within the track, so go to the start of the track
+            player.currentTime = 0;
+        }
+        playlist[currentTrack].row.classList.add("now-playing");
+    });
+    document.getElementById("next").addEventListener("click", () => {
+        playlist[currentTrack].row.classList.remove("now-playing");
+        if (currentTrack + 1 < playlist.length) {
+        var paused = player.paused;
+        player.pause();
+            ++currentTrack;
+            player.src = playlist[currentTrack].url;
+            player.currentTime = 0;
+            if (!paused) {
+                player.play();
+            }
+        }
+        playlist[currentTrack].row.classList.add("now-playing");
+    });
 });
 

@@ -146,7 +146,7 @@ time {
     background-repeat: no-repeat;
 }
 .player button:hover {
-    border: var(--highlight) 1px;
+    border: solid var(--highlight) 1px;
     background-color: color-mix(in srgb, var(--highlight) 10%, white);
 }
 
