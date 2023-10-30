@@ -47,9 +47,9 @@ header {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-rows: minmax(0, 1fr) auto auto;
     grid-template-areas:
-        "title  artwork"
+        "title       artwork"
         "now-playing artwork"
-        "player  artwork";
+        "player      artwork";
     background: color-mix(in srgb, var(--foreground) 5%, var(--background));
     border-bottom: solid color-mix(in srgb, var(--foreground) 25%, var(--background)) 1px;
     box-shadow: 0px 0px 5px rgba(0,0,0,0.25);
@@ -171,6 +171,10 @@ figcaption::after {
 
 #nowplaying {
     grid-area: now-playing;
+    font-weight: lighter;
+}
+#nowplaying span {
+    font-weight: bold;
 }
 
 #tracklist {
@@ -187,7 +191,7 @@ tr.file:hover {
 }
 
 tr.track:not(:first-child) td {
-    border-top: solid color-mix(in srgb, var(--foreground) 20%, transparent) 1px;
+    border-top: solid color-mix(in srgb, var(--foreground) 20%, var(--background)) 1px;
 }
 tr.track td {
     /*padding: 1ex 0 0.25ex 0;*/
@@ -200,6 +204,16 @@ tr.extinfo td {
 
 #tracklist td {
     vertical-align: baseline;
+}
+
+#tracklist .now-playing {
+    background: color-mix(in srgb, var(--highlight) 10%, transparent);
+}
+
+#tracklist .now-playing td {
+    border-style: solid none;
+    border-color: var(--highlight);
+    border-width: 2px;
 }
 
 #tracklist td.idx {

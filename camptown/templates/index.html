@@ -26,7 +26,7 @@
                 <button id="previous"></button>
                 <button id="next"></button>
             </div>
-            <div id="nowplaying">now playing</div>
+            <div id="nowplaying"></div>
             {{album.artwork|artwork_img(id="coverart")}}
         </header>
         <main>
@@ -36,11 +36,15 @@
 
                     <td class="idx">{{loop.index}}.</td>
 
-                    <td class="title" colspan=2>
+                    <td class="title">
                         {%- if track.filename -%}
                         <a class="name" href="{{track.filename}}">{{ track_title(track) }}</a>
                         {%- else -%}
                         <span class="name">{{ track_title(track) }}</span>
+                        {%- endif -%}
+
+                        {%- if track.artwork -%}
+                        {{track.artwork|artwork_img}}
                         {%- endif -%}
                     </td>
 
@@ -64,8 +68,8 @@
                 </tr>
 
                 <tr class="extinfo">
-                    <td colspan=2></td>
-                    <td colspan=4>
+                    <td></td>
+                    <td colspan=3>
                         {% if track.lyrics %}
                         <input type="checkbox" id="lyrics_{{loop.index}}">
                         <figure>
