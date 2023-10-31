@@ -200,7 +200,8 @@ tr.extinfo td {
 }
 .extinfo img {
     max-width: 100%;
-    max-height: auto;
+    width: auto;
+    height: auto;
 }
 
 #tracklist td {

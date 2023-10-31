@@ -38,7 +38,8 @@ def main():
 
     os.makedirs(args.output_dir, exist_ok=True)
 
-    process(album, args.output_dir)
+    process(album, args.output_dir,
+            file_callback=lambda path: os.path.join(input_dir, path))
 
     def copy_art(blob):
         if 'artwork' in blob:

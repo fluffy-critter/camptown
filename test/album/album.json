@@ -17,14 +17,25 @@
     },
     "tracks": [
         {
-            "title": "My Pinky",
+            "title": "My Pinky bclogo",
             "filename": "test.mp3",
             "duration": 60,
             "artwork": {
                 "1x": "single_track.150.jpg",
                 "2x": "single_track.300.jpg"
             },
-            "explicit": true
+            "explicit": true,
+            "about": [
+                "![](bclogo.300.jpg)",
+                "![](bclogo.300.jpg)",
+                "![](bclogo.300.jpg)",
+                "![](bclogo.300.jpg)",
+                "![](bclogo.300.jpg)",
+                "![](bclogo.300.jpg)",
+                "![](bclogo.300.jpg)",
+                "![](bclogo.300.jpg)",
+                "![](bclogo.300.jpg)"
+            ]
         },
         {
             "title": "no preview",
@@ -47,7 +58,8 @@
                 "",
                 "Another paragraph.",
                 "",
-                "So many paragraphs."
+                "So many paragraphs.",
+                "![](../../docs/logo.png)"
             ]
         },
         {
@@ -57,6 +69,18 @@
                 "1x": "single_track.150.jpg",
                 "2x": "single_track.300.jpg"
             },
+            "title": "more bclogo",
+            "about": [
+                "![](bclogo.300.jpg)",
+                "![](bclogo.300.jpg)",
+                "![](bclogo.300.jpg)",
+                "![](bclogo.300.jpg)",
+                "![](bclogo.300.jpg)",
+                "![](bclogo.300.jpg)",
+                "![](bclogo.300.jpg)",
+                "![](bclogo.300.jpg)",
+                "![](bclogo.300.jpg)"
+            ],
             "explicit": true
         },
         {
