@@ -1,12 +1,15 @@
-/* Camptown player logic
-
-https://github.com/fluffy-critter/camptown
+/*
+ * Camptown player logic script
+ * Doo-dah
+ * Doo-dah
+ *
+ * https://github.com/fluffy-critter/camptown
  */
 
-window.addEventListener("load", () => {
+window.addEventListener('load', () => {
     let player = document.querySelector('audio');
-    let nowPlaying = document.getElementById("nowplaying");
-    let coverArt = document.getElementById("coverart");
+    let nowPlaying = document.getElementById('nowplaying');
+    let coverArt = document.getElementById('coverart');
 
     var playlist = [];
     var currentTrack = 0;
@@ -15,7 +18,7 @@ window.addEventListener("load", () => {
     disclosures = document.querySelectorAll('input[type="checkbox"]');
 
     function closeOthers(disclosure) {
-        console.log("closeOthers", disclosure);
+        console.log('closeOthers', disclosure);
         if (disclosure.checked) {
             disclosures.forEach((other) => {
                 if (disclosure != other) {
@@ -25,13 +28,13 @@ window.addEventListener("load", () => {
         }
     }
     disclosures.forEach((disclosure) => {
-        disclosure.addEventListener("change", () => {
+        disclosure.addEventListener('change', () => {
             closeOthers(disclosure);
         });
     });
 
     document.querySelectorAll('button[data-disclosure]').forEach((button) => {
-        button.addEventListener("click", (e) => {
+        button.addEventListener('click', (e) => {
             e.stopPropagation();
             var check = document.getElementById(button.dataset.disclosure);
             check.checked = !check.checked;
@@ -48,9 +51,9 @@ window.addEventListener("load", () => {
     };
 
     function playTrack(idx) {
-        console.log("Playing track " + idx + ": " + playlist[idx].title);
+        console.log('Playing track ' + idx + ': ' + playlist[idx].title);
         if (currentTrack != idx || player.paused) {
-            playlist[currentTrack].row.classList.remove("now-playing");
+            playlist[currentTrack].row.classList.remove('now-playing');
             currentTrack = idx;
             player.pause();
             player.src = playlist[idx].url;
@@ -73,10 +76,10 @@ window.addEventListener("load", () => {
         if (link) {
             var idx = playlist.length;
             playlist.push(entry);
-            track.addEventListener("click", () => {
+            track.addEventListener('click', () => {
                 playTrack(idx);
             });
-            link.addEventListener("click", (e) => {
+            link.addEventListener('click', (e) => {
                 e.preventDefault();
                 playTrack(idx);
             });
@@ -85,21 +88,21 @@ window.addEventListener("load", () => {
 
     player.src = playlist[0].url;
 
-    player.addEventListener("play", () => {
+    player.addEventListener('play', () => {
         let track = playlist[currentTrack];
         let img = track.img || albumArt
         coverArt.src = img.src;
         coverArt.srcset = img.srcset;
         console.log(coverArt);
-        nowPlaying.textContent = "Now playing: ";
-        var title = document.createElement("span");
+        nowPlaying.textContent = 'Now playing: ';
+        var title = document.createElement('span');
         title.textContent = track.title;
         nowPlaying.appendChild(title);
-        track.row.classList.add("now-playing");
+        track.row.classList.add('now-playing');
     });
 
-    player.addEventListener("ended", () => {
-        playlist[currentTrack].row.classList.remove("now-playing");
+    player.addEventListener('ended', () => {
+        playlist[currentTrack].row.classList.remove('now-playing');
         if (currentTrack + 1 < playlist.length) {
             console.log(`finished ${currentTrack + 1}/${playlist.length}`);
             ++currentTrack;
@@ -111,13 +114,13 @@ window.addEventListener("load", () => {
                 block: 'nearest',
             });
         } else {
-            console.log("Playback ended");
+            console.log('Playback ended');
             nowPlaying.textContent = '';
         }
     });
 
     function prevTrack() {
-        playlist[currentTrack].row.classList.remove("now-playing");
+        playlist[currentTrack].row.classList.remove('now-playing');
         if (player.paused || player.currentTime < 2) {
             // We're paused or near the start of a track, so go to the previous track
             var paused = player.paused;
@@ -134,14 +137,14 @@ window.addEventListener("load", () => {
             // We're within the track, so go to the start of the track
             player.currentTime = 0;
         }
-        playlist[currentTrack].row.classList.add("now-playing");
+        playlist[currentTrack].row.classList.add('now-playing');
     }
 
     function nextTrack() {
-        playlist[currentTrack].row.classList.remove("now-playing");
+        playlist[currentTrack].row.classList.remove('now-playing');
         if (currentTrack + 1 < playlist.length) {
-        var paused = player.paused;
-        player.pause();
+            var paused = player.paused;
+            player.pause();
             ++currentTrack;
             player.src = playlist[currentTrack].url;
             player.currentTime = 0;
@@ -149,33 +152,34 @@ window.addEventListener("load", () => {
                 player.play();
             }
         }
-        playlist[currentTrack].row.classList.add("now-playing");
+        playlist[currentTrack].row.classList.add('now-playing');
     }
 
-    document.getElementById("previous").addEventListener("click", prevTrack);
-    document.getElementById("next").addEventListener("click", nextTrack);
+    document.getElementById('previous').addEventListener('click', prevTrack);
+    document.getElementById('next').addEventListener('click', nextTrack);
 
-    window.addEventListener("keydown", (e) => {
+    window.addEventListener('keydown', (e) => {
         e = e || window.event;
         console.log(e);
-        switch (e.key) {
-        case ' ':
-            e.preventDefault();
-            if (player.paused) {
-                player.play();
-            } else {
-                player.pause();
+        if (!e.altKey && !e.metaKey && !e.ctrlKey) {
+            switch (e.key) {
+                case ' ':
+                    e.preventDefault();
+                    if (player.paused) {
+                        player.play();
+                    } else {
+                        player.pause();
+                    }
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    prevTrack();
+                    break;
+                case 'ArrowRight':
+                    e.preventDefault();
+                    nextTrack();
+                    break;
             }
-            break;
-        case 'ArrowLeft':
-            e.preventDefault();
-            prevTrack();
-            break;
-        case 'ArrowRight':
-            e.preventDefault();
-            nextTrack();
-            break;
         }
     });
 });
-

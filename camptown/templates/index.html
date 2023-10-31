@@ -42,11 +42,11 @@
             </div>
             <div class="player">
                 <audio controls></audio>
-                <button id="previous"></button>
-                <button id="next"></button>
+                <button aria-label="Previous Track" alt="⏮️" id="previous"></button>
+                <button aria-label="Next Track" alt="⏭️" id="next"></button>
             </div>
             <div id="nowplaying"></div>
-            {{album.artwork|artwork_img(id="coverart")}}
+            {{album.artwork|artwork_img(id="coverart",alt="Cover Art")}}
         </header>
         <main>
             <table id="tracklist">
@@ -63,19 +63,19 @@
                         {%- endif -%}
 
                         {%- if track.artwork -%}
-                        {{track.artwork|artwork_img}}
+                        {{track.artwork|artwork_img(alt="Track art")}}
                         {%- endif -%}
                     </td>
 
                     <td class="disclosure">
                         {%- if track.lyrics -%}
-                        <button data-disclosure="lyrics_{{loop.index}}">lyrics</button>
+                        <button aria-label="Show lyrics" data-disclosure="lyrics_{{loop.index}}">lyrics</button>
                         {%- endif -%}
                     </td>
 
                     <td class="disclosure">
                         {%- if track.about -%}
-                        <button data-disclosure="about_{{loop.index}}">info</button>
+                        <button aria-label="Show track information" data-disclosure="about_{{loop.index}}">info</button>
                         {%- endif -%}
                     </td>
 
