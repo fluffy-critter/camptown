@@ -246,6 +246,7 @@ tr.extinfo td {
     border-radius: 1em;
     border: solid transparent 1px;
     vertical-align: middle;
+    color: var(--foreground);
 }
 
 #tracklist label:hover button {

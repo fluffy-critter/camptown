@@ -9,7 +9,7 @@
         "2x": "album_cover.300.jpg"
     },
     "theme": {
-        "foreground": "#330000",
+        "foreground": "#3300ff",
         "background": "yellow",
         "highlight": "#006600",
         "hide_footer": true,
