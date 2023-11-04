@@ -6,11 +6,12 @@ import os.path
 import shutil
 import typing
 from urllib.parse import urlparse
+import collections
+import re
 
 import jinja2
 import mistune
 from markupsafe import Markup, escape
-from slugify import UniqueSlugify  # type:ignore
 
 try:
     from .__version__ import __version__
@@ -50,6 +51,19 @@ def lyrics(text):
 
 FileCallback = typing.Callable[[str], str]
 
+class UniqueSlugify:
+    """ A slugifier that maintains output filename uniqueness """
+    def __init__(self):
+        self.counts:typing.Dict[str,int] = collections.defaultdict(lambda:0)
+
+    def __call__(self, text):
+        slug = re.sub(r'[^0-9a-zA-Z._]+', '-', text)
+        count = self.counts[slug]
+        self.counts[slug] += 1
+        if count:
+            slug += f'-{count}'
+        return slug
+
 
 class InfoRenderer(mistune.HTMLRenderer):
     """ Custom Markdown renderer for about boxes """
@@ -59,7 +73,7 @@ class InfoRenderer(mistune.HTMLRenderer):
         super().__init__()
         self.output_dir = output_dir
         self.file_callback = file_callback
-        self.slugify = UniqueSlugify(safe_chars='.')
+        self.slugify = UniqueSlugify()
         self.outfiles = outfiles
         self.map_cache: dict[str, str] = {}
 

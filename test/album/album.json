@@ -26,15 +26,15 @@
             },
             "explicit": true,
             "about": [
-                "![](bclogo.300.jpg)",
-                "![](bclogo.300.jpg)",
-                "![](bclogo.300.jpg)",
-                "![](bclogo.300.jpg)",
-                "![](bclogo.300.jpg)",
-                "![](bclogo.300.jpg)",
-                "![](bclogo.300.jpg)",
-                "![](bclogo.300.jpg)",
-                "![](bclogo.300.jpg)"
+                "![0](bclogo.300.jpg)",
+                "![0](bclogo.300.jpg)",
+                "![0](bclogo.300.jpg)",
+                "![1](../album/bclogo.300.jpg)",
+                "![0](bclogo.300.jpg)",
+                "![0](bclogo.300.jpg)",
+                "![1](../album/bclogo.300.jpg)",
+                "![0](bclogo.300.jpg)",
+                "![2](../../test/album/bclogo.300.jpg)"
             ]
         },
         {
