@@ -199,13 +199,16 @@ def process(album, output_dir,
     env.filters['timestamp'] = seconds_timestamp
     env.filters['datetime'] = seconds_datetime
 
-    urls = [(CAMPTOWN_URL, 'Camptown')]
-    if footer_urls:
-        urls += footer_urls
+    if 'theme' in album and 'footer_text' in album['theme']:
+        footer_text = Markup(album['theme']['footer_text'])
+    else:
+        urls = [(CAMPTOWN_URL, 'Camptown')]
+        if footer_urls:
+            urls += footer_urls
 
-    footer_text = Markup("Made with " + ' + '.join([
-        f'<a href="{url}" target="_blank" rel="noopener">{text}</a>'
-        for url, text in urls]))
+        footer_text = Markup("Made with " + ' + '.join([
+            f'<a href="{url}" target="_blank" rel="noopener">{text}</a>'
+            for url, text in urls]))
 
     for tmpl in ('index.html', 'player.js', 'player.css'):
         LOGGER.info("Writing %s", tmpl)

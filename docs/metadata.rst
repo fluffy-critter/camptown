@@ -54,7 +54,8 @@ A simple example follows:
             "background": "black",
             "highlight": "yellow",
             "hide_footer": False,
-            "user_css": "fancypants.css"
+            "user_css": "fancypants.css",
+            "footer_text": "Custom footer text"
         }
     }
 
@@ -98,6 +99,7 @@ The visual theme settings are as follows:
 * ``highlight``: Highlight text color
 * ``hide_footer``: Whether to hide the "Made with" footer
 * ``user_css``: User CSS file to include, for deeper visual customization
+* ``footer_text``: Custom HTML to override the "Made with" footer
 
 Artwork
 -------

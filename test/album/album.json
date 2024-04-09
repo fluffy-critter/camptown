@@ -12,8 +12,9 @@
         "foreground": "#3300ff",
         "background": "yellow",
         "highlight": "#006600",
-        "hide_footer": true,
-        "user_css": "blah.css"
+        "hide_footer": false,
+        "user_css": "blah.css",
+        "footer_text": "This is <a href=\"https://example.com/\">a test</a>"
     },
     "tracks": [
         {
