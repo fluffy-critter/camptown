@@ -129,11 +129,12 @@ time {
     align-items: center;
     column-gap: 1ex;
     padding-right: 1ex;
+    height: 36px;
 }
 
 .player button {
-    width: 3em;
-    height: 3em;
+    height: 100%;
+    aspect-ratio: 1 / 1;
     border: solid var(--foreground) 1px;
     border-radius: 4px;
     background-color: white;
@@ -141,6 +142,7 @@ time {
     background-position: center center;
     background-size: 90%;
     background-repeat: no-repeat;
+    box-sizing: border-box;
 }
 .player button:hover {
     border: solid var(--highlight) 1px;
@@ -149,6 +151,15 @@ time {
 
 audio {
     flex-grow: 1;
+    height: 100%;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+}
+
+audio::-webkit-media-controls-enclosure {
+    border-radius: 0;
+    height: 100%;
 }
 
 .track img {
