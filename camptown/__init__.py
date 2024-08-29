@@ -32,6 +32,8 @@ def lyrics(text):
         lines = text.splitlines()
     elif isinstance(text, list):
         lines = text
+    else:
+        lines = []
     for line in lines:
         if line:
             if not in_para:
@@ -192,7 +194,8 @@ def process(album, output_dir,
     outfiles: set[str] = set()
 
     env = jinja2.Environment(
-        loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), 'templates')),
+        loader=jinja2.FileSystemLoader(os.path.join(
+            os.path.dirname(__file__), 'templates')),
         autoescape=True)
     env.filters['markdown'] = markdown(output_dir, file_callback, outfiles)
     env.filters['lyrics'] = lyrics
