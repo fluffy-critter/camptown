@@ -102,7 +102,7 @@ a[href] {
     color: var(--highlight);
 }
 
-.explicit .title .name::after{
+.explicit .track .title::after{
     margin-left: 2px;
     content: "E";
     font-size: x-small;
@@ -114,8 +114,20 @@ a[href] {
     vertical-align: middle;
 }
 
-.title .name {
+.track .title {
     margin-right: 1ex;
+}
+
+.track .artist {
+    font-size: small;
+    font-style: italic;
+    opacity: 80%;
+}
+.track .artist::before {
+    content: '(';
+}
+.track .artist::after {
+    content: ')';
 }
 
 time {

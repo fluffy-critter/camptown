@@ -31,7 +31,13 @@
                 "![0](bclogo.300.jpg)",
                 "![1](../album/bclogo.300.jpg)",
                 "![0](bclogo.300.jpg)",
-                "![2](../../test/album/bclogo.300.jpg)"
+                "![2](../../test/album/bclogo.300.jpg)",
+                "",
+                "<3"
+            ],
+            "lyrics": [
+                "I <3 you so much",
+                "but only sometimes"
             ]
         },
         {
@@ -143,7 +149,8 @@
                 "1x": "single_track.150.jpg",
                 "2x": "single_track.300.jpg"
             },
-            "explicit": true
+            "explicit": true,
+            "artist": "someone else"
         },
         {
             "title": "no preview",

@@ -1,5 +1,4 @@
 {%- macro track_title(track) -%}
-{%- if track.artist %}{{ track.artist }}: {% endif -%}
 {%- if track.title -%}
 {{ track.title }}
 {%- else -%}
@@ -55,12 +54,13 @@
 
                     <td class="idx">{{loop.index}}.</td>
 
-                    <td class="title">
+                    <td class="track">
                         {%- if track.filename -%}
-                        <a class="name" href="{{track.filename}}">{{ track_title(track) }}</a>
+                        <a class="title" href="{{track.filename}}">{{ track_title(track) }}</a>
                         {%- else -%}
-                        <span class="name">{{ track_title(track) }}</span>
+                        <span class="title">{{ track_title(track) }}</span>
                         {%- endif -%}
+                        {%- if track.artist %}<span class="artist">{{ track.artist }}</span>{% endif -%}
 
                         {%- if track.artwork -%}
                         {{track.artwork|artwork_img(alt="Track art")}}
