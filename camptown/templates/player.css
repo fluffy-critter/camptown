@@ -120,8 +120,7 @@ a[href] {
 
 .track .artist {
     font-size: small;
-    font-style: italic;
-    opacity: 80%;
+    opacity: 75%;
 }
 .track .artist::before {
     content: '(';
