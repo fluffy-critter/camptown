@@ -206,9 +206,7 @@ def process(album, output_dir,
     if 'theme' in album and 'footer_text' in album['theme']:
         footer_text = Markup(album['theme']['footer_text'])
     else:
-        urls = [(CAMPTOWN_URL, 'Camptown')]
-        if footer_urls:
-            urls += footer_urls
+        urls = footer_urls or [(CAMPTOWN_URL, 'Camptown')]
 
         footer_text = Markup("Made with " + ' + '.join([
             f'<a href="{url}" target="_blank" rel="noopener">{text}</a>'
