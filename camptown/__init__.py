@@ -192,7 +192,8 @@ def process(album, output_dir,
     outfiles: set[str] = set()
 
     env = jinja2.Environment(
-        loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), 'templates')))
+        loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), 'templates')),
+        autoescape=True)
     env.filters['markdown'] = markdown(output_dir, file_callback, outfiles)
     env.filters['lyrics'] = lyrics
     env.filters['artwork_img'] = artwork_img

@@ -18,7 +18,7 @@
     },
     "tracks": [
         {
-            "title": "My Pinky bclogo",
+            "title": "My <Pinky> bclogo",
             "filename": "test.mp3",
             "duration": 60,
             "explicit": true,
@@ -41,7 +41,7 @@
         {},
         {
             "title": "My Other Pinky",
-            "artist": "fringle",
+            "artist": "fringle<3",
             "filename": "test.mp3",
             "duration": 210,
             "lyrics": [
