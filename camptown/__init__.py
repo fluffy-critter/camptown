@@ -34,21 +34,8 @@ def lyrics(text):
         lines = text
     else:
         lines = []
-    for line in lines:
-        if line:
-            if not in_para:
-                output += Markup('<p class="verse">')
-                in_para = True
-            else:
-                output += Markup('<br>')
-            output += line
-        else:
-            if in_para:
-                output += Markup('</p>')
-                in_para = False
-    if in_para:
-        output += Markup('</p>')
-    return output
+
+    return Markup(mistune.html('  \n'.join(lines)))
 
 
 FileCallback = typing.Callable[[str], str]
