@@ -81,7 +81,7 @@ header #title {
     grid-area: title;
 }
 
-header img {
+header button {
     grid-area: artwork;
     object-fit: contain;
     max-width: 25vw;
