@@ -45,8 +45,11 @@
                 <button aria-label="Next Track" alt="⏭️" id="next"></button>
             </div>
             <div id="nowplaying"><span>&nbsp;</span></div>
-            {{album.artwork|artwork_img(id="coverart",alt="Cover Art")}}
+            <button id="openfullsize">{{album.artwork|artwork_img(id="coverart",alt="Cover Art")}}</button>
         </header>
+
+        <dialog id="fullsizeart"><img src="{{album.artwork.fullsize}}"></dialog>
+
         <main>
             <table id="tracklist">
                 {% for track in tracks %}

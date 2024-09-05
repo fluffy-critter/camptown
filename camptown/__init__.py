@@ -113,6 +113,8 @@ def artwork_img(spec, **kwargs):
         tag += f' src="{escape(spec["1x"])}"'
     if '2x' in spec:
         tag += f' srcset="{escape(spec["1x"])} 1x, {escape(spec["2x"])} 2x"'
+    if 'fullsize' in spec:
+        tag += f' data-fullsize="{escape(spec["fullsize"])}"'
 
     for key, val in kwargs.items():
         tag += f' {escape(key)}="{escape(val)}"'

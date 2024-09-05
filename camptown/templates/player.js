@@ -9,7 +9,6 @@
 window.addEventListener('load', () => {
     let player = document.querySelector('audio');
     let nowPlaying = document.getElementById('nowplaying');
-    let coverArt = document.getElementById('coverart');
 
     var playlist = [];
     var currentTrack = 0;
@@ -42,13 +41,43 @@ window.addEventListener('load', () => {
         });
     });
 
+    let fullSizeArt = document.getElementById('fullsizeart')
+
+    console.log('foo');
+    document.getElementById('openfullsize').addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        console.log(fullSizeArt);
+        if (fullSizeArt.open) {
+            fullSizeArt.close();
+        } else {
+            fullSizeArt.show();
+        }
+    });
+
+    console.log('bar');
+    document.querySelector('dialog#fullsizeart').addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        fullSizeArt.close();
+    })
 
     // preserve the default album art
     var albumArt = document.querySelector('img#coverart');
     albumArt = {
         src: albumArt.src,
         srcset: albumArt.srcset,
+        dataset: albumArt.dataset
     };
+
+    // set the album art from what's now playing
+    function setCoverArt(ref) {
+        let thumb = document.querySelector('img#coverart');
+        thumb.src = ref.src;
+        thumb.srcset = ref.srcset;
+
+        document.querySelector('#fullsizeart img').src = ref.dataset.fullsize ?? albumArt.dataset.fullsize ?? '';
+    }
 
     function playTrack(idx) {
         console.log('Playing track ' + idx + ': ' + playlist[idx].title);
@@ -90,10 +119,9 @@ window.addEventListener('load', () => {
 
     player.addEventListener('play', () => {
         let track = playlist[currentTrack];
-        let img = track.img || albumArt
-        coverArt.src = img.src;
-        coverArt.srcset = img.srcset;
-        console.log(coverArt);
+        let img = track.img || albumArt;
+        setCoverArt(img);
+        console.log(img);
         nowPlaying.textContent = 'Now playing: ';
         var title = document.createElement('span');
         title.textContent = track.title;

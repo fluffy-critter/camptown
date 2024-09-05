@@ -6,7 +6,8 @@
 
     "artwork": {
         "1x": "album_cover.150.jpg",
-        "2x": "album_cover.300.jpg"
+        "2x": "album_cover.300.jpg",
+        "fullsize": "album_cover.jpg"
     },
     "theme": {
         "foreground": "#3300ff",
@@ -74,9 +75,10 @@
             "duration": 60,
             "artwork": {
                 "1x": "single_track.150.jpg",
-                "2x": "single_track.300.jpg"
+                "2x": "single_track.300.jpg",
+                "fullsize": "single_track.jpg"
             },
-            "title": "more bclogo",
+            "title": "more bclogo with fullsize art",
             "about": [
                 "![](bclogo.300.jpg)",
                 "![](bclogo.300.jpg)",

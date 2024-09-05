@@ -42,7 +42,7 @@ h1, h2 {
 
 header {
     position: relative;
-    z-index: 1000;
+    z-index: 100;
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-rows: minmax(0, 1fr) auto auto;
@@ -57,7 +57,7 @@ header {
 
 footer {
     position: relative;
-    z-index: 1000;
+    z-index: 100;
     font-size: small;
     font-style: italic;
     background: color-mix(in srgb, var(--foreground) 10%, var(--background));
@@ -133,6 +133,13 @@ time {
     font-size: small;
     font-style: italic;
     opacity: 50%;
+}
+
+
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
 
 .player {
@@ -295,4 +302,31 @@ button#previous {
 
 button#next {
     background-image: url('data:image/svg+xml,<svg width="100%" height="100%" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g><path d="M59.019,32.071c0.509,-0.508 0.78,-1.206 0.747,-1.924c-0.033,-0.718 -0.366,-1.389 -0.918,-1.849c-4.771,-3.976 -16.309,-13.591 -22.562,-18.802c-0.762,-0.635 -1.823,-0.772 -2.722,-0.351c-0.899,0.421 -1.473,1.324 -1.473,2.316c-0,9.94 -0,30.92 -0,41.364c-0,1.034 0.623,1.967 1.579,2.363c0.956,0.396 2.056,0.177 2.787,-0.554c6.368,-6.368 17.943,-17.944 22.562,-22.563Z"/><path d="M34.929,32.071c0.508,-0.508 0.779,-1.206 0.746,-1.924c-0.032,-0.718 -0.366,-1.389 -0.918,-1.849c-4.771,-3.976 -16.309,-13.591 -22.562,-18.802c-0.762,-0.635 -1.823,-0.772 -2.722,-0.351c-0.899,0.421 -1.473,1.324 -1.473,2.316c0,9.94 0,30.92 0,41.364c-0,1.034 0.623,1.967 1.579,2.363c0.956,0.396 2.056,0.177 2.787,-0.554c6.368,-6.368 17.944,-17.944 22.563,-22.563Z"/></g></svg>');
+}
+
+dialog#fullsizeart {
+    z-index: 150;
+    max-width: 90vw;
+    max-height: 90vh;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0;
+    margin: 1ex auto;
+    border-radius: 1em;
+    overflow: hidden;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
+    border: none;
+}
+
+#fullsizeart img,
+button img {
+    display: block;
+    max-height: 90vh;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
 }
