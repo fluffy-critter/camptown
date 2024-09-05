@@ -39,7 +39,9 @@
                 "I <3 you so much",
                 "but only sometimes",
                 "",
-                "But let's add *extra* **emphasis**"
+                "But let's add *extra* **emphasis**",
+                "",
+                "![](bclogo.300.jpg)"
             ]
         },
         {

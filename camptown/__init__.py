@@ -24,20 +24,6 @@ LOGGER = logging.getLogger(__name__)
 CAMPTOWN_URL = 'https://github.com/fluffy-critter/camptown'
 
 
-def lyrics(text):
-    """ Given lines of text, produce nice markup for lyrics """
-    output = ''
-    in_para = False
-    if isinstance(text, str):
-        lines = text.splitlines()
-    elif isinstance(text, list):
-        lines = text
-    else:
-        lines = []
-
-    return Markup(mistune.html('  \n'.join(lines)))
-
-
 FileCallback = typing.Callable[[str], str]
 
 
@@ -104,7 +90,7 @@ class InfoRenderer(mistune.HTMLRenderer):
         return super().image(alt, self.map_url(url), title)
 
 
-def markdown(output_dir, file_callback, protections):
+def markdown(output_dir, file_callback, protections, linebreak):
     """ Given lines of text, convert as markdown """
 
     md_proc = mistune.create_markdown(
@@ -114,7 +100,7 @@ def markdown(output_dir, file_callback, protections):
         LOGGER.debug("text=%s  %s", type(text), text)
 
         if isinstance(text, list):
-            text = '\n'.join(text)
+            text = linebreak.join(text)
 
         return Markup(md_proc(text))
     return _markdown
@@ -155,6 +141,7 @@ def seconds_datetime(duration):
     return f'{minutes:.0f}m {seconds:.0f}s'
 
 
+
 def process(album, output_dir,
             footer_urls: typing.Optional[list[tuple[str, str]]] = None,
             file_callback: typing.Optional[FileCallback] = None) -> set[str]:
@@ -184,8 +171,8 @@ def process(album, output_dir,
         loader=jinja2.FileSystemLoader(os.path.join(
             os.path.dirname(__file__), 'templates')),
         autoescape=True)
-    env.filters['markdown'] = markdown(output_dir, file_callback, outfiles)
-    env.filters['lyrics'] = lyrics
+    env.filters['markdown'] = markdown(output_dir, file_callback, outfiles, '\n')
+    env.filters['lyrics'] = markdown(output_dir, file_callback, outfiles, '  \n')
     env.filters['artwork_img'] = artwork_img
     env.filters['timestamp'] = seconds_timestamp
     env.filters['datetime'] = seconds_datetime
