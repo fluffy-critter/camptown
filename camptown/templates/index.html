@@ -45,10 +45,14 @@
                 <button aria-label="Next Track" alt="⏭️" id="next"></button>
             </div>
             <div id="nowplaying"><span>&nbsp;</span></div>
+            {% if album.artwork %}
             <button id="openfullsize">{{album.artwork|artwork_img(id="coverart",alt="Cover Art")}}</button>
+            {% endif %}
         </header>
 
+        {% if album.artwork %}
         <dialog id="fullsizeart"><img src="{{album.artwork.fullsize}}"></dialog>
+        {% endif %}
 
         <main>
             <table id="tracklist">
