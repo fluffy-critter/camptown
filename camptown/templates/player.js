@@ -43,7 +43,7 @@ window.addEventListener('load', () => {
 
     let fullSizeArt = document.getElementById('fullsizeart')
 
-    console.log('foo');
+console.log("1");
     document.getElementById('openfullsize').addEventListener('click', (e) => {
         e.stopPropagation();
 
@@ -55,13 +55,14 @@ window.addEventListener('load', () => {
         }
     });
 
-    console.log('bar');
+console.log("2");
     document.querySelector('dialog#fullsizeart').addEventListener('click', (e) => {
         e.stopPropagation();
 
         fullSizeArt.close();
-    })
+    });
 
+console.log("3");
     // preserve the default album art
     var albumArt = document.querySelector('img#coverart');
     albumArt = {
@@ -69,12 +70,14 @@ window.addEventListener('load', () => {
         srcset: albumArt.srcset,
         dataset: albumArt.dataset
     };
+console.log("4");
 
     // set the album art from what's now playing
     function setCoverArt(ref) {
         let thumb = document.querySelector('img#coverart');
         thumb.src = ref.src;
         thumb.srcset = ref.srcset;
+        console.log("setting artwork", thumb.src, thumb.srcset);
 
         document.querySelector('#fullsizeart img').src = ref.dataset.fullsize ?? albumArt.dataset.fullsize ?? '';
     }
