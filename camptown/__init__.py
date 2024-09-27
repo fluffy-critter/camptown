@@ -143,7 +143,6 @@ def seconds_datetime(duration):
     return f'{minutes:.0f}m {seconds:.0f}s'
 
 
-
 def process(album, output_dir,
             footer_urls: typing.Optional[list[tuple[str, str]]] = None,
             file_callback: typing.Optional[FileCallback] = None) -> set[str]:
@@ -173,8 +172,10 @@ def process(album, output_dir,
         loader=jinja2.FileSystemLoader(os.path.join(
             os.path.dirname(__file__), 'templates')),
         autoescape=True)
-    env.filters['markdown'] = markdown(output_dir, file_callback, outfiles, '\n')
-    env.filters['lyrics'] = markdown(output_dir, file_callback, outfiles, '  \n')
+    env.filters['markdown'] = markdown(
+        output_dir, file_callback, outfiles, '\n')
+    env.filters['lyrics'] = markdown(
+        output_dir, file_callback, outfiles, '  \n')
     env.filters['artwork_img'] = artwork_img
     env.filters['timestamp'] = seconds_timestamp
     env.filters['datetime'] = seconds_datetime
