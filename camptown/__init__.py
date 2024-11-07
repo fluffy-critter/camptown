@@ -7,11 +7,11 @@ import os.path
 import re
 import shutil
 import typing
-import smartypants
 from urllib.parse import urlparse
 
 import jinja2
 import mistune
+import smartypants
 from markupsafe import Markup, escape
 
 try:
@@ -96,7 +96,7 @@ def markdown(output_dir, file_callback, protections, linebreak):
 
     md_proc = mistune.create_markdown(
         renderer=InfoRenderer(output_dir, file_callback, protections),
-        plugins=['strikethrough','table'])
+        plugins=['strikethrough', 'table'])
 
     def _markdown(text):
         LOGGER.debug("text=%s  %s", type(text), text)
