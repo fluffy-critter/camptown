@@ -7,6 +7,7 @@ import os.path
 import re
 import shutil
 import typing
+import smartypants
 from urllib.parse import urlparse
 
 import jinja2
@@ -102,7 +103,7 @@ def markdown(output_dir, file_callback, protections, linebreak):
         if isinstance(text, list):
             text = linebreak.join(text)
 
-        return Markup(md_proc(text))
+        return Markup(smartypants.smartypants(md_proc(text)))
     return _markdown
 
 
