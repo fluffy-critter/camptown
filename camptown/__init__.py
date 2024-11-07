@@ -48,7 +48,7 @@ class InfoRenderer(mistune.HTMLRenderer):
 
     def __init__(self, output_dir, file_callback: typing.Optional[FileCallback],
                  outfiles: set[str]):
-        super().__init__()
+        super().__init__(escape=False)
         self.output_dir = output_dir
         self.file_callback = file_callback
         self.slugify = slugify()
@@ -95,7 +95,8 @@ def markdown(output_dir, file_callback, protections, linebreak):
     """ Given lines of text, convert as markdown """
 
     md_proc = mistune.create_markdown(
-        renderer=InfoRenderer(output_dir, file_callback, protections))
+        renderer=InfoRenderer(output_dir, file_callback, protections),
+        plugins=['strikethrough','table'])
 
     def _markdown(text):
         LOGGER.debug("text=%s  %s", type(text), text)
