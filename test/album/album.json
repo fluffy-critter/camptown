@@ -34,7 +34,7 @@
                 "![0](bclogo.300.jpg)",
                 "![2](../../test/album/bclogo.300.jpg)",
                 "",
-                "<3"
+                "[<3](https://example.com/?foo=bar&baz=quux)"
             ],
             "lyrics": [
                 "I <3 you so much",

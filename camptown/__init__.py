@@ -57,9 +57,9 @@ class InfoRenderer(mistune.HTMLRenderer):
 
     def link(self, text, url, title=None):
         LOGGER.debug("link text=%s url=%s title=%s", text, url, title)
-        tag = f'<a href="{escape(url)}" target="_blank" rel="noopener"'
+        tag = f'<a href="{url}" target="_blank" rel="noopener"'
         if title:
-            tag += f' title="{escape(url)}"'
+            tag += f' title="{url}"'
         tag += '>'
         return f'{tag}{text}</a>'
 
