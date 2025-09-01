@@ -7,7 +7,7 @@ import os.path
 import re
 import shutil
 import typing
-from urllib.parse import urlparse, quote
+from urllib.parse import quote, urlparse
 
 import jinja2
 import mistune
@@ -114,12 +114,14 @@ def artwork_img(spec, file_callback, **kwargs):
 
     srcset = []
     if file_callback:
-        widths = {filename:Image.open(file_callback(filename)).size[0]
-        for filename in spec.values()}
+        widths = {filename: Image.open(file_callback(filename)).size[0]
+                  for filename in spec.values()}
         base_width = min(widths.values())
+
         def ftrunc(size):
             return f'{size/base_width}'.removesuffix('.0')
-        srcset = [f'{quote(filename)} {ftrunc(width)}x' for filename,width in widths.items()]
+        srcset = [
+            f'{quote(filename)} {ftrunc(width)}x' for filename, width in widths.items()]
     else:
         for size, filename in spec.items():
             if size[-1] == 'x':
@@ -174,6 +176,7 @@ def image_srcspec(spec, filename, file_callback):
         return f'{escape(filename)} {spec}'
     return ''
 
+
 def process(album, output_dir,
             footer_urls: typing.Optional[list[tuple[str, str]]] = None,
             file_callback: typing.Optional[FileCallback] = None) -> set[str]:
@@ -207,7 +210,8 @@ def process(album, output_dir,
         output_dir, file_callback, outfiles, '\n')
     env.filters['lyrics'] = markdown(
         output_dir, file_callback, outfiles, '  \n')
-    env.filters['artwork_img'] = lambda spec, **kwargs: artwork_img(spec, file_callback, **kwargs)
+    env.filters['artwork_img'] = lambda spec, **kwargs: artwork_img(
+        spec, file_callback, **kwargs)
     env.filters['timestamp'] = seconds_timestamp
     env.filters['datetime'] = seconds_datetime
 
