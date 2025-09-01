@@ -432,7 +432,7 @@ img {
     }
 }
 
-@media screen and (max-height:25vw)) {
+@media screen and (max-height:25vw) {
     main {
         display: none;
     }
