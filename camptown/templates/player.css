@@ -356,6 +356,10 @@ img {
     display: none;
 }
 
+#noartwork:target ~ header #coverart {
+    display: none;
+}
+
 #playeronly:target ~ header #title,
 #playeronly:target ~ header #coverart,
 #playeronly:target ~ footer,
