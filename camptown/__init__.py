@@ -109,30 +109,23 @@ def markdown(output_dir, file_callback, protections, linebreak):
     return _markdown
 
 
-def artwork_img(spec, file_callback, **kwargs):
+def artwork_img(spec, **kwargs):
     """ Convert an artwork spec to an <img> tag """
 
-    srcset = []
-    if file_callback:
-        widths = {filename: Image.open(file_callback(filename)).size[0]
-                  for filename in spec.values()}
-        base_width = min(widths.values())
-
-        def ftrunc(size):
-            return f'{size/base_width}'.removesuffix('.0')
-        srcset = [
-            f'{quote(filename)} {ftrunc(width)}x' for filename, width in widths.items()]
-    else:
-        for size, filename in spec.items():
-            if size[-1] == 'x':
-                srcset.append(f'{quote(filename)} {size}')
+    srcset = [f'{quote(filename)} {size}'
+              for size, filename in spec.items()
+              if isinstance(size, str)
+              and isinstance(filename, str) and size[-1] == 'x']
 
     tag = '<img alt="" loading="lazy"'
     if '1x' in spec:
         tag += f' src="{quote(spec["1x"])}"'
-        if file_callback:
-            width, height = Image.open(file_callback(spec['1x'])).size
-            tag += f' width={width} height={height}'
+
+    if 'width' in spec:
+        tag += f' width={spec["width"]}'
+    if 'height' in spec:
+        tag += f' height={spec["height"]}'
+
     if srcset:
         tag += f' srcset="{", ".join(srcset)}"'
 
@@ -210,8 +203,7 @@ def process(album, output_dir,
         output_dir, file_callback, outfiles, '\n')
     env.filters['lyrics'] = markdown(
         output_dir, file_callback, outfiles, '  \n')
-    env.filters['artwork_img'] = lambda spec, **kwargs: artwork_img(
-        spec, file_callback, **kwargs)
+    env.filters['artwork_img'] = artwork_img
     env.filters['timestamp'] = seconds_timestamp
     env.filters['datetime'] = seconds_datetime
 

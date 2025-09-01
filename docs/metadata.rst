@@ -104,8 +104,10 @@ The visual theme settings are as follows:
 Artwork
 -------
 
-Artwork data can be attached to an album and/or its tracks. It is a :py:class:`dict` with the following keys:
+Artwork data can be attached to an album and/or its tracks. It is a :py:class:`dict` with the following keys (all optional):
 
+* ``width``: The nominal width of the thumbnail
+* ``height``: The nominal height of the thumbnail
 * ``1x``: The normal-DPI rendition of the thumbnail
 * ``2x``: The high-DPI rendition of the thumbnail
 * ``fullsize``: The fullsize rendition of the artwork
