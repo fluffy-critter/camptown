@@ -75,11 +75,15 @@ window.addEventListener('load', () => {
     // set the album art from what's now playing
     function setCoverArt(ref) {
         let thumb = document.querySelector('img#coverart');
-        console.log("setting artwork", ref, ref.dataset.fullsize);
+        let fullsize = ref.dataset.fullsize ?? albumArt.dataset.fullsize ?? '';
+
+        console.log("setting artwork", ref, fullsize);
+
         thumb.src = ref.src;
         thumb.srcset = ref.srcset;
 
-        document.querySelector('#fullsizeart img').src = ref.dataset.fullsize ?? albumArt.dataset.fullsize ?? '';
+        document.querySelector('#fullsizeart img').src = fullsize;
+        document.querySelector('#fullcover img').src = fullsize;
     }
 
     function playTrack(idx) {

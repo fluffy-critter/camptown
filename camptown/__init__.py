@@ -7,12 +7,13 @@ import os.path
 import re
 import shutil
 import typing
-from urllib.parse import urlparse
+from urllib.parse import urlparse, quote
 
 import jinja2
 import mistune
 import smartypants
 from markupsafe import Markup, escape
+from PIL import Image
 
 try:
     from .__version__ import __version__
@@ -108,15 +109,33 @@ def markdown(output_dir, file_callback, protections, linebreak):
     return _markdown
 
 
-def artwork_img(spec, **kwargs):
+def artwork_img(spec, file_callback, **kwargs):
     """ Convert an artwork spec to an <img> tag """
+
+    srcset = []
+    if file_callback:
+        widths = {filename:Image.open(file_callback(filename)).size[0]
+        for filename in spec.values()}
+        base_width = min(widths.values())
+        def ftrunc(size):
+            return f'{size/base_width}'.removesuffix('.0')
+        srcset = [f'{quote(filename)} {ftrunc(width)}x' for filename,width in widths.items()]
+    else:
+        for size, filename in spec.items():
+            if size[-1] == 'x':
+                srcset.append(f'{quote(filename)} {size}')
+
     tag = '<img alt="" loading="lazy"'
     if '1x' in spec:
-        tag += f' src="{escape(spec["1x"])}"'
-    if '2x' in spec:
-        tag += f' srcset="{escape(spec["1x"])} 1x, {escape(spec["2x"])} 2x"'
+        tag += f' src="{quote(spec["1x"])}"'
+        if file_callback:
+            width, height = Image.open(file_callback(spec['1x'])).size
+            tag += f' width={width} height={height}'
+    if srcset:
+        tag += f' srcset="{", ".join(srcset)}"'
+
     if 'fullsize' in spec:
-        tag += f' data-fullsize="{escape(spec["fullsize"])}"'
+        tag += f' data-fullsize="{quote(spec["fullsize"])}"'
 
     for key, val in kwargs.items():
         tag += f' {escape(key)}="{escape(val)}"'
@@ -145,6 +164,16 @@ def seconds_datetime(duration):
     return f'{minutes:.0f}m {seconds:.0f}s'
 
 
+def image_srcspec(spec, filename, file_callback):
+    """ Given a filename for an image, return a srcset specification """
+    if file_callback:
+        image = Image.open(file_callback(filename))
+        width, _ = image.size
+        return f'{escape(filename)} {width}w'
+    if spec[-1] == 'x':
+        return f'{escape(filename)} {spec}'
+    return ''
+
 def process(album, output_dir,
             footer_urls: typing.Optional[list[tuple[str, str]]] = None,
             file_callback: typing.Optional[FileCallback] = None) -> set[str]:
@@ -154,7 +183,7 @@ def process(album, output_dir,
     :param str output_dir: Output directory to receive the output
     :param list[tuple[str,str]] footer_urls: A set of (url,text) for URLs to add
         to the page footer
-    :param caallable file_request_callback: A callback to handle file requests;
+    :param callable file_request_callback: A callback to handle file requests;
         takes one parameters source_filename, and returns the path to the
         requested file.
 
@@ -178,7 +207,7 @@ def process(album, output_dir,
         output_dir, file_callback, outfiles, '\n')
     env.filters['lyrics'] = markdown(
         output_dir, file_callback, outfiles, '  \n')
-    env.filters['artwork_img'] = artwork_img
+    env.filters['artwork_img'] = lambda spec, **kwargs: artwork_img(spec, file_callback, **kwargs)
     env.filters['timestamp'] = seconds_timestamp
     env.filters['datetime'] = seconds_datetime
 

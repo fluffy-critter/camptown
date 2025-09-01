@@ -31,8 +31,17 @@ body {
 
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-areas:
+    "header"
+    "main"
+    "footer";
     grid-template-rows: auto minmax(0, 1fr) auto;
     overflow: hidden;
+}
+
+body >span {
+    height: 0;
+    display: none;
 }
 
 h1, h2 {
@@ -41,6 +50,7 @@ h1, h2 {
 }
 
 header {
+    grid-area: header;
     position: relative;
     z-index: 100;
     display: grid;
@@ -48,7 +58,7 @@ header {
     grid-template-rows: minmax(0, 1fr) auto auto;
     grid-template-areas:
         "title       artwork"
-        "now-playing artwork"
+        "nowplaying  artwork"
         "player      artwork";
     background: color-mix(in srgb, var(--foreground) 5%, var(--background));
     border-bottom: solid color-mix(in srgb, var(--foreground) 25%, var(--background)) 1px;
@@ -56,6 +66,7 @@ header {
 }
 
 footer {
+    grid-area: footer;
     position: relative;
     z-index: 100;
     font-size: small;
@@ -71,6 +82,7 @@ footer a {
 }
 
 main {
+    grid-area: main;
     overflow-y: auto;
     overflow-x: hidden;
     position: relative;
@@ -81,9 +93,11 @@ header #title {
     grid-area: title;
 }
 
-header button {
+header #openfullsize {
     grid-area: artwork;
-    object-fit: contain;
+    background: transparent;
+}
+header #openfullsize img {
     max-width: 25vw;
     height: auto;
 }
@@ -196,7 +210,7 @@ figcaption::after {
 }
 
 #nowplaying {
-    grid-area: now-playing;
+    grid-area: nowplaying;
     font-weight: lighter;
 }
 #nowplaying span {
@@ -318,6 +332,10 @@ dialog#fullsizeart {
     border: none;
 }
 
+#fullcover img {
+    display: none;
+}
+
 #fullsizeart img,
 button img {
     display: block;
@@ -331,26 +349,86 @@ img {
     max-height: 100%;
 }
 
-#compact:target #title,
-#compact:target #coverart,
-#compact:target footer {
+#compact:target ~ header #title,
+#compact:target ~ header #coverart,
+#compact:target ~ footer {
+    display: none;
+}
+
+#playeronly:target ~ header #title,
+#playeronly:target ~ header #coverart,
+#playeronly:target ~ footer,
+#playeronly:target ~ main {
+    display: none;
+}
+
+#playeronly:target ~ header {
+    height: 100vh;
+}
+
+#albumart:target ~ header {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1fr) auto;
+    grid-template-areas:
+        "artwork"
+        "title"
+        "nowplaying"
+        "player";
+    height: 100vh;
+}
+#albumart:target ~ main {
+    display: none;
+}
+#albumart:target ~ footer {
+    display: none;
+}
+#albumart:target ~ header #openfullsize {
+    display: none;
+}
+#albumart:target ~ header #fullcover {
+    display: block;
+    grid-area: artwork;
+    max-width: 100vw;
+    max-height: 100vh;
+    text-align: center;
+}
+#albumart:target ~ header #fullcover img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    max-width: 100vw;
+    object-fit: contain;
+}
+
+#notracklist:target ~ main {
     display: none;
 }
 
 @media screen and (max-width:530px) {
-    #coverart {
+    header {
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-rows: minmax(0, 1fr) auto auto;
+        grid-template-areas:
+            "title artwork"
+            "nowplaying artwork"
+            "player player";
+    }
+}
+
+@media screen and (max-height:360px) {
+    footer {
         display: none;
     }
 }
 
-@media screen and (max-height:212px) {
-    #title {
+@media screen and (max-height:400px) {
+    td.lyrics {
         display: none;
     }
-    #coverart {
-        display: none;
-    }
-    footer {
+}
+
+@media screen and (max-height:240px) {
+    td.disclosure, tr.extinfo {
         display: none;
     }
 }

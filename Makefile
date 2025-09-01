@@ -14,6 +14,7 @@ format:
 test: setup
 	mkdir -p test_output/album
 	poetry run python3 -m camptown -vvv test/album/album.json test_output/album
+	poetry run python3 -m camptown -vvv test/responsive/album.json test_output/responsive
 
 .PHONY: pylint
 pylint:

@@ -23,7 +23,11 @@
         <script src="player.js">
         </script>
     </head>
-    <body id="compact">
+    <body>
+        <span id="albumart"></span>
+        <span id="compact"></span>
+        <span id="playeronly"></span>
+        <span id="notracklist"></span>
         <header>
             <div id="title">
                 <h1>{%- if album.album_url -%}
@@ -52,6 +56,13 @@
                     <img id="coverart" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
                 {%- endif -%}
             </button>
+            <div id="fullcover">
+                {%- if album.artwork -%}
+                    <img src="{{album.artwork.fullsize}}">
+                {%- else -%}
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+                {%- endif -%}
+            </div>
         </header>
 
         <dialog id="fullsizeart">
@@ -82,13 +93,13 @@
                         {%- endif -%}
                     </td>
 
-                    <td class="disclosure">
+                    <td class="disclosure lyrics">
                         {%- if track.lyrics -%}
                         <button aria-label="Show lyrics" data-disclosure="lyrics_{{loop.index}}">lyrics</button>
                         {%- endif -%}
                     </td>
 
-                    <td class="disclosure">
+                    <td class="disclosure about">
                         {%- if track.about -%}
                         <button aria-label="Show track information" data-disclosure="about_{{loop.index}}">info</button>
                         {%- endif -%}
@@ -106,7 +117,7 @@
                     <td colspan=3>
                         {% if track.lyrics %}
                         <input type="checkbox" id="lyrics_{{loop.index}}">
-                        <figure>
+                        <figure class="lyrics">
                             <figcaption>Lyrics</figcaption>
                             <div>{{track.lyrics|lyrics}}</div>
                         </figure>
@@ -114,7 +125,7 @@
 
                         {% if track.about %}
                         <input type="checkbox" id="about_{{loop.index}}">
-                        <figure>
+                        <figure class="about">
                             <figcaption>About this track</figcaption>
                             <div>{{track.about|markdown}}</div>
                         </figure>
