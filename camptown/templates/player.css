@@ -97,9 +97,10 @@ header #openfullsize {
     grid-area: artwork;
     background: transparent;
 }
-header #openfullsize img {
+header img#coverart {
+    height: 100%;
     max-width: 25vw;
-    height: auto;
+    object-fit: contain;
 }
 
 header .player {
@@ -413,22 +414,26 @@ img {
             "nowplaying artwork"
             "player player";
     }
+
+    img#coverart {
+        max-width: 33vw;
+    }
 }
 
-@media screen and (max-height:360px) {
+@media screen and (max-height:350px) {
     footer {
         display: none;
     }
 }
 
-@media screen and (max-height:400px) {
-    td.lyrics {
+@media screen and (max-height:275px) {
+    td.disclosure, tr.extinfo {
         display: none;
     }
 }
 
-@media screen and (max-height:240px) {
-    td.disclosure, tr.extinfo {
+@media screen and (max-height:25vw)) {
+    main {
         display: none;
     }
 }

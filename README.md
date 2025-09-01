@@ -2,13 +2,13 @@
 
 A simple, accessibility-minded, semantic-HTML-based audio player for embedding albums into webpages. The player has the following features:
 
-* Embed it with any ordinary `<iframe>`, e.g.
+* Embed it with any ordinary `<iframe>`, e.g.:
 
     ```html
     <iframe src="https://example.com/player-embed/index.html"></iframe>
     ```
 
-* Add a `#compact` to the end of the URL to get a compact layout, e.g.
+* Add one of `#compact`, `#playeronly`, `#notracklist`, or `#albumart` to choose a different layout for the embed, e.g.:
 
     ```html
     <iframe src="https://example.com/player-embed/index.html#compact"></iframe>
