@@ -21,7 +21,7 @@
         {
             "title": "My <Pinky> bclogo",
             "filename": "test.mp3",
-            "duration": 60,
+            "duration": 0,
             "explicit": true,
             "about": [
                 "![0](bclogo.300.jpg)",
@@ -47,14 +47,14 @@
         },
         {
             "title": "no preview",
-            "duration": 273
+            "duration": 10
         },
         {},
         {
             "title": "My Other Pinky",
             "artist": "fringle<3",
             "filename": "test.mp3",
-            "duration": 210,
+            "duration": 59.999,
             "lyrics": [
                 "A line",
                 "a <line>",
@@ -94,12 +94,12 @@
         },
         {
             "title": "no preview",
-            "duration": 273
+            "duration": 3600
         },
         {
             "title": "My Other Pinky",
             "filename": "test.mp3",
-            "duration": 210,
+            "duration": 3601,
             "lyrics": [
                 "A line",
                 "a line",
@@ -117,7 +117,7 @@
         {
             "title": "This song has a really really really really really really really really really really really really really really really really really really really long title",
             "filename": "test.mp3",
-            "duration": 60,
+            "duration": 3661,
             "artwork": {
                 "1x": "single_track.150.jpg",
                 "2x": "single_track.300.jpg"
@@ -127,12 +127,12 @@
         },
         {
             "title": "no preview",
-            "duration": 273
+            "duration": 86400
         },
         {
             "title": "My Other Pinky",
             "filename": "test.mp3",
-            "duration": 210,
+            "duration": 86399.5,
             "lyrics": [
                 "A line",
                 "a line",

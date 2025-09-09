@@ -141,7 +141,7 @@ def artwork_img(spec, **kwargs):
 
 def seconds_timestamp(duration):
     """ Convert a duration (in seconds) to a timestamp like h:mm:ss """
-    minutes, seconds = divmod(duration, 60)
+    minutes, seconds = divmod(round(duration), 60)
     hours, minutes = divmod(minutes, 60)
 
     if hours:
@@ -149,14 +149,14 @@ def seconds_timestamp(duration):
     return f'{minutes:.0f}:{seconds:02.0f}'
 
 
-def seconds_datetime(duration):
+def seconds_datetime(seconds):
     """ Convert a duration (in seconds) to an HTML5 duration like 3h 5m 10s """
-    minutes, seconds = divmod(duration, 60)
+    minutes, seconds = divmod(round(seconds), 60)
     hours, minutes = divmod(minutes, 60)
+    days, hours = divmod(hours, 24)
 
-    if hours:
-        return f'{hours:.0f}h {minutes:.0f}m {seconds:.0f}s'
-    return f'{minutes:.0f}m {seconds:.0f}s'
+    parts = [f'{val}{lbl}' for val,lbl in zip([days,hours,minutes,seconds],'dhms') if val > 0]
+    return ' '.join(parts) if parts else '0s'
 
 
 def image_srcspec(spec, filename, file_callback):

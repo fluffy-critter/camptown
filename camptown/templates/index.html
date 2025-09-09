@@ -107,7 +107,7 @@
                     </td>
 
                     <td class="duration">
-                        {%- if track.duration -%}
+                        {%- if 'duration' in track -%}
                             <time datetime="{{track.duration|datetime}}">{{track.duration|timestamp}}</time>
                         {%- endif -%}
                     </td>
