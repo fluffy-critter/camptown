@@ -13,7 +13,6 @@ import jinja2
 import mistune
 import smartypants
 from markupsafe import Markup, escape
-from PIL import Image
 
 try:
     from .__version__ import __version__
@@ -155,19 +154,9 @@ def seconds_datetime(seconds):
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
 
-    parts = [f'{val}{lbl}' for val,lbl in zip([days,hours,minutes,seconds],'dhms') if val > 0]
+    parts = [f'{val}{lbl}' for val, lbl in zip(
+        [days, hours, minutes, seconds], 'dhms') if val > 0]
     return ' '.join(parts) if parts else '0s'
-
-
-def image_srcspec(spec, filename, file_callback):
-    """ Given a filename for an image, return a srcset specification """
-    if file_callback:
-        image = Image.open(file_callback(filename))
-        width, _ = image.size
-        return f'{escape(filename)} {width}w'
-    if spec[-1] == 'x':
-        return f'{escape(filename)} {spec}'
-    return ''
 
 
 def process(album, output_dir,
